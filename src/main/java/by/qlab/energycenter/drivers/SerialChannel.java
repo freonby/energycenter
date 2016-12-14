@@ -18,6 +18,14 @@ public class SerialChannel implements Channel {
 		this.portset = portset;
 	}
 
+	public PortSet getPortset() {
+		return portset;
+	}
+
+	public void setPortset(PortSet portset) {
+		this.portset = portset;
+	}
+
 	public SerialPort getPort() {
 		return port;
 	}
