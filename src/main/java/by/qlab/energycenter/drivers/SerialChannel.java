@@ -3,7 +3,9 @@ package by.qlab.energycenter.drivers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import by.qlab.energycenter.interfaces.Answer;
 import by.qlab.energycenter.interfaces.Channel;
+import by.qlab.energycenter.interfaces.Packet;
 import jssc.SerialPort;
 import jssc.SerialPortException;
 
@@ -58,6 +60,12 @@ public class SerialChannel implements Channel {
 			logger.error("Closing serial port - failed");
 
 		}
+	}
+
+	@Override
+	public Answer send(Packet packet) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
