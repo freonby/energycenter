@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import by.qlab.energycenter.model.DeviceRequest;
 import jssc.SerialPortList;
 
 /**
@@ -28,9 +28,9 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public ModelAndView home(Locale locale, Model model) {
 		logger.error("Welcome home! The client locale is {}.", locale);
-
+		ModelAndView mav = new ModelAndView();
 		ResourceBundle rb = ResourceBundle.getBundle("messages");
 		String[] portlist = SerialPortList.getPortNames();
 		ArrayList<String> portList = new ArrayList<String>();
@@ -38,16 +38,18 @@ public class HomeController {
 			portList.add(portlist[i]);
 
 		}
-		model.addAttribute("portList", portList);
-
-		return "home";
+		mav.setViewName("home");
+		mav.addObject("device", new DeviceRequest());
+		mav.addObject("portList", portList);
+		return mav;
 	}
 
-	@RequestMapping(value = "/go", method = RequestMethod.GET)
-	public ModelAndView goRead(HttpServletRequest servlet) {
+	@RequestMapping(value = "/check-form", method = RequestMethod.GET)
+	public ModelAndView goRead(@ModelAttribute("device") DeviceRequest dev) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("result");
-		mav.addObject("addr", servlet.getParameter("Combobox"));
+		mav.addObject("addr", dev.getNetAddress());
+		mav.addObject("port", dev.getPortName());
 
 		return mav;
 	}

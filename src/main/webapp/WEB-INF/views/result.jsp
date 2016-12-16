@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-передано -  ${addr}
+<p>передано -  ${addr}</p>
+<p>передано -  ${port}</p>
+
 </body>
 </html>
