@@ -54,24 +54,24 @@ public class PortSet {
 		this.parity = parity;
 	}
 
-	public void setParity(String parity) {
-		switch (parity) {
-		case "even":
-			this.parity = 2;
-			break;
-		case "mark":
-			this.parity = 3;
-			break;
-		case "odd":
-			this.parity = 1;
-			break;
-		case "none":
-			this.parity = 0;
-			break;
-		default:
-			this.parity = 0;
-		}
-
-	}
+	// public void setParity(String parity) {
+	// switch (parity) {
+	// case "even":
+	// this.parity = 2;
+	// break;
+	// case "mark":
+	// this.parity = 3;
+	// break;
+	// case "odd":
+	// this.parity = 1;
+	// break;
+	// case "none":
+	// this.parity = 0;
+	// break;
+	// default:
+	// this.parity = 0;
+	// }
+	//
+	// }
 
 }
