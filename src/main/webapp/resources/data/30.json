@@ -1,0 +1,193 @@
+[{
+	"interval": "00:30",
+	"value": 45.6,
+	"color": "#2F2F4C"
+}, {
+	"interval": "01:00",
+	"value": 45.6,
+	"color": "#2F2F4C"
+}, {
+	"interval": "01:30",
+	"value": 45.6,
+	"color": "#2F2F4C"
+}, {
+	"interval": "02:00",
+	"value": 46.4,
+	"color": "#2F2F4C"
+}, {
+	"interval": "02:30",
+	"value": 46.4,
+	"color": "#2F2F4C"
+}, {
+	"interval": "03:00",
+	"value": 46.0,
+	"color": "#2F2F4C"
+}, {
+	"interval": "03:30",
+	"value": 46.0,
+	"color": "#2F2F4C"
+}, {
+	"interval": "04:00",
+	"value": 46.4,
+	"color": "#2F2F4C"
+}, {
+	"interval": "04:30",
+	"value": 46.4,
+	"color": "#2F2F4C"
+}, {
+	"interval": "05:00",
+	"value": 46.4,
+	"color": "#2F2F4C"
+}, {
+	"interval": "05:30",
+	"value": 46.0,
+	"color": "#2F2F4C"
+}, {
+	"interval": "06:00",
+	"value": 46.0,
+	"color": "#C0B48B"
+}, {
+	"interval": "06:30",
+	"value": 46.8,
+	"color": "#C0B48B"
+}, {
+	"interval": "07:00",
+	"value": 49.2,
+	"color": "#C0B48B"
+}, {
+	"interval": "07:30",
+	"value": 73.2,
+	"color": "#C0B48B"
+}, {
+	"interval": "08:00",
+	"value": 93.2,
+	"color": "#C7504F"
+}, {
+	"interval": "08:30",
+	"value": 96.0,
+	"color": "#C7504F"
+}, {
+	"interval": "09:00",
+	"value": 101.2,
+	"color": "#C7504F"
+}, {
+	"interval": "09:30",
+	"value": 98.0,
+	"color": "#C7504F"
+}, {
+	"interval": "10:00",
+	"value": 106.4,
+	"color": "#C7504F"
+}, {
+	"interval": "10:30",
+	"value": 105.2,
+	"color": "#C7504F"
+}, {
+	"interval": "11:00",
+	"value": 98.4,
+	"color": "#C7504F"
+}, {
+	"interval": "11:30",
+	"value": 94.0,
+	"color": "#C0B48B"
+}, {
+	"interval": "12:00",
+	"value": 84.4,
+	"color": "#C0B48B"
+}, {
+	"interval": "12:30",
+	"value": 67.6,
+	"color": "#C0B48B"
+}, {
+	"interval": "13:00",
+	"value": 69.6,
+	"color": "#C0B48B"
+}, {
+	"interval": "13:30",
+	"value": 112.0,
+	"color": "#C0B48B"
+}, {
+	"interval": "14:00",
+	"value": 134.4,
+	"color": "#C0B48B"
+}, {
+	"interval": "14:30",
+	"value": 115.2,
+	"color": "#C0B48B"
+}, {
+	"interval": "15:00",
+	"value": 118.0,
+	"color": "#C0B48B"
+}, {
+	"interval": "15:30",
+	"value": 105.2,
+	"color": "#C0B48B"
+}, {
+	"interval": "16:00",
+	"value": 105.2,
+	"color": "#C0B48B"
+}, {
+	"interval": "16:30",
+	"value": 97.6,
+	"color": "#C0B48B"
+}, {
+	"interval": "17:00",
+	"value": 99.6,
+	"color": "#C7504F"
+}, {
+	"interval": "17:30",
+	"value": 82.4,
+	"color": "#C7504F"
+}, {
+	"interval": "18:00",
+	"value": 78.0,
+	"color": "#C7504F"
+}, {
+	"interval": "18:30",
+	"value": 80.4,
+	"color": "#C7504F"
+}, {
+	"interval": "19:00",
+	"value": 56.8,
+	"color": "#C7504F"
+}, {
+	"interval": "19:30",
+	"value": 56.4,
+	"color": "#C7504F"
+}, {
+	"interval": "20:00",
+	"value": 54.8,
+	"color": "#C7504F"
+}, {
+	"interval": "20:30",
+	"value": 52.0,
+	"color": "#C0B48B"
+}, {
+	"interval": "21:00",
+	"value": 50.0,
+	"color": "#C0B48B"
+}, {
+	"interval": "21:30",
+	"value": 49.6,
+	"color": "#C0B48B"
+}, {
+	"interval": "22:00",
+	"value": 50.0,
+	"color": "#C0B48B"
+}, {
+	"interval": "22:30",
+	"value": 49.6,
+	"color": "#C0B48B"
+}, {
+	"interval": "23:00",
+	"value": 49.6,
+	"color": "#2F2F4C"
+}, {
+	"interval": "23:30",
+	"value": 49.2,
+	"color": "#2F2F4C"
+}, {
+	"interval": "00:00",
+	"value": 49.2,
+	"color": "#2F2F4C"
+}]

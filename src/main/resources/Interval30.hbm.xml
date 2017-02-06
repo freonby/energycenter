@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="by.qlab.energycenter.model.Interval30" table="INTERVAL30">
+        <id name="id" type="long">
+            <column name="ID" />
+            <generator class="increment" />
+        </id>
+        <property name="device_id" type="long">
+            <column name="DEVICE_ID" />
+        </property>
+        <property name="fiderName" type="java.lang.String">
+            <column name="FIDERNAME" />
+        </property>
+        <property name="time" type="java.lang.String">
+            <column name="TIME" />
+        </property>
+        <property name="interval_1" type="float">
+            <column name="INTERVAL_1" default="0.0" />
+        </property>
+        <property name="interval_2" type="float">
+            <column name="INTERVAL_2" default="0.0" />
+        </property>
+        <property name="interval_3" type="float">
+            <column name="INTERVAL_3" default="0.0" />
+        </property>
+        <property name="interval_4" type="float">
+            <column name="INTERVAL_4" default="0.0" />
+        </property>
+        <property name="interval_5" type="float">
+            <column name="INTERVAL_5" default="0.0" />
+        </property>
+        <property name="interval_6" type="float">
+            <column name="INTERVAL_6" default="0.0" />
+        </property>
+        <property name="interval_7" type="float">
+            <column name="INTERVAL_7" default="0.0" />
+        </property>
+        <property name="interval_8" type="float">
+            <column name="INTERVAL_8" default="0.0" />
+        </property>
+        <property name="interval_9" type="float">
+            <column name="INTERVAL_9" default="0.0" />
+        </property>
+        <property name="interval_10" type="float">
+            <column name="INTERVAL_10" default="0.0" />
+        </property>
+        <property name="interval_11" type="float">
+            <column name="INTERVAL_11" default="0.0" />
+        </property>
+        <property name="interval_12" type="float">
+            <column name="INTERVAL_12" default="0.0" />
+        </property>
+        <property name="interval_13" type="float">
+            <column name="INTERVAL_13" default="0.0" />
+        </property>
+        <property name="interval_14" type="float">
+            <column name="INTERVAL_14" default="0.0" />
+        </property>
+        <property name="interval_15" type="float">
+            <column name="INTERVAL_15" default="0.0" />
+        </property>
+        <property name="interval_16" type="float">
+            <column name="INTERVAL_16" default="0.0" />
+        </property>
+        <property name="interval_17" type="float">
+            <column name="INTERVAL_17" default="0.0" />
+        </property>
+        <property name="interval_18" type="float">
+            <column name="INTERVAL_18" default="0.0" />
+        </property>
+        <property name="interval_19" type="float">
+            <column name="INTERVAL_19" default="0.0" />
+        </property>
+        <property name="interval_20" type="float">
+            <column name="INTERVAL_20" default="0.0" />
+        </property>
+        <property name="interval_21" type="float">
+            <column name="INTERVAL_21" default="0.0" />
+        </property>
+        <property name="interval_22" type="float">
+            <column name="INTERVAL_22" default="0.0" />
+        </property>
+        <property name="interval_23" type="float">
+            <column name="INTERVAL_23" default="0.0" />
+        </property>
+        <property name="interval_24" type="float">
+            <column name="INTERVAL_24" default="0.0" />
+        </property>
+        <property name="interval_25" type="float">
+            <column name="INTERVAL_25" default="0.0" />
+        </property>
+        <property name="interval_26" type="float">
+            <column name="INTERVAL_26" default="0.0" />
+        </property>
+        <property name="interval_27" type="float">
+            <column name="INTERVAL_27" default="0.0" />
+        </property>
+        <property name="interval_28" type="float">
+            <column name="INTERVAL_28" default="0.0" />
+        </property>
+        <property name="interval_29" type="float">
+            <column name="INTERVAL_29" default="0.0" />
+        </property>
+        <property name="interval_30" type="float">
+            <column name="INTERVAL_30" default="0.0" />
+        </property>
+        <property name="interval_31" type="float">
+            <column name="INTERVAL_31" default="0.0" />
+        </property>
+        <property name="interval_32" type="float">
+            <column name="INTERVAL_32" default="0.0" />
+        </property>
+        <property name="interval_33" type="float">
+            <column name="INTERVAL_33" default="0.0" />
+        </property>
+        <property name="interval_34" type="float">
+            <column name="INTERVAL_34" default="0.0" />
+        </property>
+        <property name="interval_35" type="float">
+            <column name="INTERVAL_35" default="0.0" />
+        </property>
+        <property name="interval_36" type="float">
+            <column name="INTERVAL_36" default="0.0" />
+        </property>
+        <property name="interval_37" type="float">
+            <column name="INTERVAL_37" default="0.0" />
+        </property>
+        <property name="interval_38" type="float">
+            <column name="INTERVAL_38" default="0.0" />
+        </property>
+        <property name="interval_39" type="float">
+            <column name="INTERVAL_39" default="0.0" />
+        </property>
+        <property name="interval_40" type="float">
+            <column name="INTERVAL_40" default="0.0" />
+        </property>
+        <property name="interval_41" type="float">
+            <column name="INTERVAL_41" default="0.0" />
+        </property>
+        <property name="interval_42" type="float">
+            <column name="INTERVAL_42" default="0.0" />
+        </property>
+        <property name="interval_43" type="float">
+            <column name="INTERVAL_43" default="0.0" />
+        </property>
+        <property name="interval_44" type="float">
+            <column name="INTERVAL_44" default="0.0" />
+        </property>
+        <property name="interval_45" type="float">
+            <column name="INTERVAL_45" default="0.0" />
+        </property>
+        <property name="interval_46" type="float">
+            <column name="INTERVAL_46" default="0.0" />
+        </property>
+        <property name="interval_47" type="float">
+            <column name="INTERVAL_47" default="0.0" />
+        </property>
+        <property name="interval_48" type="float">
+            <column name="INTERVAL_48" default="0.0" />
+        </property>
+    </class>
+</hibernate-mapping>
