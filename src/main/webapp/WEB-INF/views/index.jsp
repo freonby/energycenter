@@ -72,12 +72,12 @@
 			<div class="container k-content">
 				<div class="row  margin_top_100">
 					<div class="col-md-6 col-sm-5 col-lg-4">
-					<p>Дата: ${deviceTime}</p>
-					<p>Устройство: ${deviceType}</p>
-					<p>Заводской номер: ${deviceNumber}</p>
-					<p>Фидер: ${fider}</p>
-					
-						<button id="undo" class="k-button k-primary">Опрос</button>						
+						<p>Дата: ${deviceTime}</p>
+						<p>Устройство: ${deviceType}</p>
+						<p>Заводской номер: ${deviceNumber}</p>
+						<p>Фидер: ${fider}</p>
+
+						<button id="undo" class="k-button k-primary">Опрос</button>
 					</div>
 					<div class="col-md-6 col-sm-5 col-lg-4">
 						<p>Интервал</p>
@@ -100,11 +100,11 @@
 							<li>гистограмма</li>
 							<li>площадь</li>
 						</ul>
-						
+
 					</div>
 
 
-					
+
 				</div>
 
 
@@ -112,43 +112,81 @@
 		</section>
 		<section id="content">
 			<div class="container">
-				<!-- Nav tabs -->
-				<ul class="nav nav-pills">
-					<li class="active"><a href="#graph" data-toggle="tab"
-						onclick="createChart()">график</a></li>
-					<li><a href="#table" data-toggle="tab" onclick="getTable()">таблица</a></li>
-					<li><a href="#console" data-toggle="tab">консоль</a></li>
+				<div class="row">
+					<div class="col-lg-3">
+						<ul id="treeview">
+							<li data-expanded="true"><span class="k-icon k-i-folder"></span>
+								ООО Интегра-Плюс
+								<ul>
+									<li data-expanded="true"><span
+										class="k-icon k-i-folder-open"></span>ТП2154
+										<ul>
+											<li><span class="k-icon k-i-calculator"></span>Ввод Т1</li>
+											<li><span class="k-icon k-i-calculator"></span>Ввод Т2</li>
+											<li><span class="k-icon k-i-calculator"></span>ТСН</li>
+										</ul></li>
+									<li data-expanded="true"><span class="k-icon k-i-folder"></span>Цех
+										16
+										<ul>
+											<li data-expanded="true"><span
+												class="k-icon k-i-folder-open"></span>ВРУ
+												<ul>
+													<li><span class="k-icon k-i-calculator"></span>Компрессор
+														№4</li>
+													<li><span class="k-icon k-i-calculator"></span>Насосная
+														станция</li>
+												</ul></li>
+											<li><span class="k-icon k-i-calculator"></span>МТС</li>
+										</ul></li>
+									<li><span class="k-icon k-i-calculator"></span>СС301</li>
+									<li><span class="k-icon k-i-calculator"></span>СС101</li>
+									<li><span class="k-icon k-i-calculator"></span>СС301</li>
+									<li><span class="k-icon k-i-calculator"></span>СС301</li>
+								</ul></li>
+						</ul>
+					</div>
+					<div class="col-lg-9">
+						<!-- Nav tabs -->
+						<ul class="nav nav-pills">
+							<li class="active"><a href="#graph" data-toggle="tab"
+								onclick="createChart()">график</a></li>
+							<li><a href="#table" data-toggle="tab" onclick="getTable()">таблица</a></li>
+							<li><a href="#console" data-toggle="tab">консоль</a></li>
 
-				</ul>
-				
-				<!-- Tab panes -->
-				<div class="tab-content">
-					<div class="tab-pane active" id="graph">
-						<div class="row">
-							<div class="col-md-12 chart-wrapper box-chart tab-margin wide">
-								<div id="chart"></div>
+						</ul>
+
+						<!-- Tab panes -->
+						<div class="tab-content">
+							<div class="tab-pane active" id="graph">
+								<div class="row">
+									<div class="col-md-12 chart-wrapper box-chart tab-margin wide">
+										<div id="chart"></div>
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane" id="table">
+								<div class="row">
+									<div class="col-md-12 chart-wrapper box-chart tab-margin">
+										<div id="grid"></div>
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane" id="console">
+								<p class=" tab-margin">Лог событий:</p>
+								<div class="console"></div>
 							</div>
 						</div>
 					</div>
-					<div class="tab-pane" id="table">
-						<div class="row">
-							<div class="col-md-12 chart-wrapper box-chart tab-margin">
-								<div id="grid"></div>
-							</div>
-						</div>
-					</div>
-					<div class="tab-pane" id="console">
-						<p class=" tab-margin">Лог событий:</p>
-						<div class="console"></div>
-					</div>
-
 				</div>
-
 			</div>
 
 		</section>
-
-
+		
+		<script>
+			$(document).ready(function() {
+				$("#treeview").kendoTreeView();
+			});
+		</script>
 		<script>
 			// create ComboBox from select HTML element
 			$("#size").kendoComboBox();
