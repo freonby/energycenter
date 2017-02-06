@@ -21,8 +21,15 @@ public class HomeController {
 	// LoggerFactory.getLogger(HomeController.class);
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index() {
-		return "index";
+	public ModelAndView index() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("index");
+		Interval30 data = hibdao.getInterval30Day(3128814);
+		mav.addObject("deviceType", "CC301");
+		mav.addObject("deviceNumber", data.getDevice_id());
+		mav.addObject("fider", data.getFiderName());
+		mav.addObject("deviceTime", data.getTime());
+		return mav;
 	}
 	/*
 	 * public ModelAndView home() { ModelAndView mav = new ModelAndView();

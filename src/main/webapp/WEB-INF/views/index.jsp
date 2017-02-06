@@ -72,10 +72,12 @@
 			<div class="container k-content">
 				<div class="row  margin_top_100">
 					<div class="col-md-6 col-sm-5 col-lg-4">
-						<button id="undo" class="k-button k-primary">Опрос</button>
-						
-						
-						
+					<p>Дата: ${deviceTime}</p>
+					<p>Устройство: ${deviceType}</p>
+					<p>Заводской номер: ${deviceNumber}</p>
+					<p>Фидер: ${fider}</p>
+					
+						<button id="undo" class="k-button k-primary">Опрос</button>						
 					</div>
 					<div class="col-md-6 col-sm-5 col-lg-4">
 						<p>Интервал</p>
