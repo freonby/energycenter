@@ -1,14 +1,14 @@
 package by.qlab.energycenter.datamodel;
 
-public class TransformerType {
-	private long id;
+public class EnergyMeterType {
+	private String id;
 	private String type;
 
-	public TransformerType() {
-		super();
+	public EnergyMeterType() {
+
 	}
 
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 
@@ -16,11 +16,12 @@ public class TransformerType {
 		return type;
 	}
 
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
 	public void setType(String type) {
 		this.type = type;
 	}
+
 }

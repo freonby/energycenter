@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 08.02.2017 15:52:31 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="by.qlab.energycenter.datamodel.Voltage" table="VOLTAGE">
+        <id name="id" type="long">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="voltage" type="java.lang.String">
+            <column name="VOLTAGE" />
+        </property>
+        <many-to-one name="transformerStation" class="by.qlab.energycenter.datamodel.TransformerStation" fetch="join">
+            <column name="TRANSFORMERSTATION" />
+        </many-to-one>
+        <many-to-one name="electricalBus" class="by.qlab.energycenter.datamodel.ElectricalBus" fetch="join">
+            <column name="ELECTRICALBUS" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 08.02.2017 15:52:31 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="by.qlab.energycenter.datamodel.TransformerStation" table="TRANSFORMERSTATION">
+        <id name="id" type="long">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <many-to-one name="customer" class="by.qlab.energycenter.datamodel.Customer" fetch="join">
+            <column name="CUSTOMER" />
+        </many-to-one>
+        <list name="listTypes" inverse="false" table="STATIONTYPE" lazy="true">
+            <key>
+                <column name="ID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="by.qlab.energycenter.datamodel.StationType" />
+        </list>
+        <list name="listVoltages" inverse="false" table="VOLTAGE" lazy="true">
+            <key>
+                <column name="ID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="by.qlab.energycenter.datamodel.Voltage" />
+        </list>
+        <list name="listElectricalBusses" inverse="false" table="ELECTRICALBUS" lazy="true">
+            <key>
+                <column name="ID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="by.qlab.energycenter.datamodel.ElectricalBus" />
+        </list>
+    </class>
+</hibernate-mapping>

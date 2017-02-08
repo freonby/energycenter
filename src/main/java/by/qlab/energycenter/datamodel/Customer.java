@@ -16,7 +16,7 @@ public class Customer {
 	private String bankAccount;
 	private String contactPerson;
 	private String comment;
-	private ArrayList<TransformerStation> listStations;
+	private ArrayList<TransformerStation> listStations = new ArrayList<TransformerStation>();
 
 	public Customer() {
 
@@ -132,6 +132,14 @@ public class Customer {
 
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+
+	public ArrayList<TransformerStation> getListStations() {
+		return listStations;
+	}
+
+	public void setListStations(ArrayList<TransformerStation> listStations) {
+		this.listStations = listStations;
 	}
 
 }

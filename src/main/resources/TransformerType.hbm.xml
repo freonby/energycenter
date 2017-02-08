@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 08.02.2017 15:52:31 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="by.qlab.energycenter.datamodel.TransformerType" table="TRANSFORMERTYPE">
+        <id name="id" type="long">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="type" type="java.lang.String">
+            <column name="TYPE" />
+        </property>
+    </class>
+</hibernate-mapping>

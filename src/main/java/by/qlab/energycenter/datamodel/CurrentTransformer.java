@@ -5,6 +5,51 @@ import java.util.ArrayList;
 public class CurrentTransformer {
 	private long id;
 	private String name;
+	private Fider fider;
 	private int KI;
-	private ArrayList<TransformerType> listTypes;
+	private ArrayList<TransformerType> listTypes = new ArrayList<TransformerType>();
+
+	public CurrentTransformer() {
+		super();
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getKI() {
+		return KI;
+	}
+
+	public ArrayList<TransformerType> getListTypes() {
+		return listTypes;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setKI(int kI) {
+		KI = kI;
+	}
+
+	public void setListTypes(ArrayList<TransformerType> listTypes) {
+		this.listTypes = listTypes;
+	}
+
+	public Fider getFider() {
+		return fider;
+	}
+
+	public void setFider(Fider fider) {
+		this.fider = fider;
+	}
 }
