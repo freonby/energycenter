@@ -13,26 +13,8 @@
         <many-to-one name="sectionBus" class="by.qlab.energycenter.datamodel.SectionBus" fetch="join">
             <column name="SECTIONBUS_ID" />
         </many-to-one>
-        <list name="listEnergyMeters" inverse="false" table="ENERGYMETER" lazy="true" cascade="all" fetch="select">
-            <key>
-                <column name="FIDER_ID" />
-            </key>
-            <list-index></list-index>
-            <one-to-many class="by.qlab.energycenter.datamodel.EnergyMeter" />
-        </list>
-        <list name="listCurrentTransformers" inverse="false" table="CURRENTTRANSFORMER" lazy="true" cascade="all" fetch="select">
-            <key>
-                <column name="FIDER_ID" />
-            </key>
-            <list-index></list-index>
-            <one-to-many class="by.qlab.energycenter.datamodel.CurrentTransformer" />
-        </list>
-        <list name="listVoltageTransformers" inverse="false" table="VOLTAGETRANSFORMER" lazy="true" cascade="all" fetch="select">
-            <key>
-                <column name="FIDER_ID" />
-            </key>
-            <list-index></list-index>
-            <one-to-many class="by.qlab.energycenter.datamodel.VoltageTransformer" />
-        </list>
+        <one-to-one name="energyMeter" class="by.qlab.energycenter.datamodel.EnergyMeter" fetch="join" cascade="all" lazy="false"></one-to-one>
+        <one-to-one name="currentTransformer" class="by.qlab.energycenter.datamodel.CurrentTransformer" fetch="join" cascade="all" lazy="false"></one-to-one>
+        <one-to-one name="voltageTransformer" class="by.qlab.energycenter.datamodel.VoltageTransformer" fetch="join" cascade="all" lazy="false"></one-to-one>
     </class>
 </hibernate-mapping>

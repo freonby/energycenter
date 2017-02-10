@@ -43,7 +43,7 @@
         <property name="comment" type="java.lang.String">
             <column name="COMMENT" />
         </property>
-        <list name="listStations" inverse="false" table="TRANSFORMERSTATION" lazy="true" cascade="all" fetch="select">
+        <list name="listStations" inverse="false" table="TRANSFORMERSTATION" lazy="false" cascade="all" fetch="join">
             <key>
                 <column name="CUSTOMER_ID" />
             </key>

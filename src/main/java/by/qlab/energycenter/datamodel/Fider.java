@@ -1,8 +1,6 @@
 package by.qlab.energycenter.datamodel;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Fider implements Serializable {
 	/**
@@ -12,9 +10,9 @@ public class Fider implements Serializable {
 	private long fider_id;
 	private String name;
 	private SectionBus sectionBus;
-	private List<EnergyMeter> listEnergyMeters = new ArrayList<EnergyMeter>();
-	private List<CurrentTransformer> listCurrentTransformers = new ArrayList<CurrentTransformer>();
-	private List<VoltageTransformer> listVoltageTransformers = new ArrayList<VoltageTransformer>();
+	private EnergyMeter energyMeter = new EnergyMeter();
+	private CurrentTransformer currentTransformer = new CurrentTransformer();
+	private VoltageTransformer voltageTransformer = new VoltageTransformer();
 
 	public Fider() {
 		super();
@@ -44,28 +42,28 @@ public class Fider implements Serializable {
 		this.sectionBus = sectionBus;
 	}
 
-	public List<EnergyMeter> getListEnergyMeters() {
-		return listEnergyMeters;
+	public EnergyMeter getEnergyMeter() {
+		return energyMeter;
 	}
 
-	public void setListEnergyMeters(List<EnergyMeter> listEnergyMeters) {
-		this.listEnergyMeters = listEnergyMeters;
+	public CurrentTransformer getCurrentTransformer() {
+		return currentTransformer;
 	}
 
-	public List<CurrentTransformer> getListCurrentTransformers() {
-		return listCurrentTransformers;
+	public VoltageTransformer getVoltageTransformer() {
+		return voltageTransformer;
 	}
 
-	public void setListCurrentTransformers(List<CurrentTransformer> listCurrentTransformers) {
-		this.listCurrentTransformers = listCurrentTransformers;
+	public void setEnergyMeter(EnergyMeter energyMeter) {
+		this.energyMeter = energyMeter;
 	}
 
-	public List<VoltageTransformer> getListVoltageTransformers() {
-		return listVoltageTransformers;
+	public void setCurrentTransformer(CurrentTransformer currentTransformer) {
+		this.currentTransformer = currentTransformer;
 	}
 
-	public void setListVoltageTransformers(List<VoltageTransformer> listVoltageTransformers) {
-		this.listVoltageTransformers = listVoltageTransformers;
+	public void setVoltageTransformer(VoltageTransformer voltageTransformer) {
+		this.voltageTransformer = voltageTransformer;
 	}
 
 }

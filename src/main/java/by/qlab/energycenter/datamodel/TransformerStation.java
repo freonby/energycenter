@@ -12,7 +12,6 @@ public class TransformerStation implements Serializable {
 	private long transformerstation_id;
 	private String name;
 	private Customer customer;
-	private List<StationType> listTypes = new ArrayList<StationType>();
 	private List<ElectricalBus> listElectricalBusses = new ArrayList<ElectricalBus>();
 
 	public TransformerStation() {
@@ -41,14 +40,6 @@ public class TransformerStation implements Serializable {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
-	}
-
-	public List<StationType> getListTypes() {
-		return listTypes;
-	}
-
-	public void setListTypes(List<StationType> listTypes) {
-		this.listTypes = listTypes;
 	}
 
 	public List<ElectricalBus> getListElectricalBusses() {

@@ -10,8 +10,5 @@
         <property name="type" type="java.lang.String">
             <column name="TYPE" />
         </property>
-        <many-to-one name="energyMeter" class="by.qlab.energycenter.datamodel.EnergyMeter" fetch="join">
-            <column name="ENERGYMETER_ID" />
-        </many-to-one>
     </class>
 </hibernate-mapping>

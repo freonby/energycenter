@@ -13,7 +13,7 @@
         <many-to-one name="electricalBus" class="by.qlab.energycenter.datamodel.ElectricalBus" fetch="join">
             <column name="ELECTRICALBUS_ID" />
         </many-to-one>
-        <list name="listFiders" inverse="false" table="FIDER" lazy="true" cascade="all" fetch="select">
+        <list name="listFiders" inverse="false" table="FIDER" lazy="false" cascade="all" fetch="join">
             <key>
                 <column name="SECTIONBUS_ID" />
             </key>

@@ -7,17 +7,13 @@
             <column name="ELECTRICALBUS_ID" />
             <generator class="increment" />
         </id>
+        <property name="voltage" type="java.lang.String">
+            <column name="VOLTAGE" />
+        </property>
         <many-to-one name="transformerStation" class="by.qlab.energycenter.datamodel.TransformerStation" fetch="join">
             <column name="TRANSFORMERSTATION_ID" />
         </many-to-one>
-        <list name="listVoltages" inverse="false" table="VOLTAGE" lazy="true" cascade="all" fetch="select">
-            <key>
-                <column name="ELECTRICALBUS_ID" />
-            </key>
-            <list-index></list-index>
-            <one-to-many class="by.qlab.energycenter.datamodel.Voltage" />
-        </list>
-        <list name="listSections" inverse="false" table="SECTIONBUS" lazy="true" cascade="all" fetch="select">
+        <list name="listSections" inverse="false" table="SECTIONBUS" lazy="false" cascade="all" fetch="join">
             <key>
                 <column name="ELECTRICALBUS_ID" />
             </key>

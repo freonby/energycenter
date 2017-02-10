@@ -18,9 +18,6 @@
 		<mapping resource="EnergyMeterType.hbm.xml" />
 		<mapping resource="Fider.hbm.xml" />
 		<mapping resource="SectionBus.hbm.xml" />
-		<mapping resource="StationType.hbm.xml" />
-		<mapping resource="TTType.hbm.xml" />
-		<mapping resource="UTType.hbm.xml" />
 		<mapping resource="Voltage.hbm.xml" />
 		<mapping resource="VoltageTransformer.hbm.xml" />
 	</session-factory>

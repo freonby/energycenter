@@ -10,8 +10,5 @@
         <property name="voltage" type="java.lang.String">
             <column name="VOLTAGE" />
         </property>
-        <many-to-one name="electricalBus" class="by.qlab.energycenter.datamodel.ElectricalBus" fetch="join">
-            <column name="ELECTRICALBUS_ID" />
-        </many-to-one>
     </class>
 </hibernate-mapping>

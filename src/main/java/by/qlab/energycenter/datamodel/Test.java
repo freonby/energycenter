@@ -1,6 +1,7 @@
 package by.qlab.energycenter.datamodel;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import by.qlab.energycenter.dao.DAO;
@@ -11,29 +12,19 @@ public class Test {
 
 		Customer customer = new Customer();
 
-		UTType ut1 = new UTType();
-		UTType ut2 = new UTType();
-		ut1.setType("ЗНОЛ-1");
-		ut2.setType("ЗНОЛ-2");
-
-		TTType it1 = new TTType();
-		TTType it2 = new TTType();
-		it1.setType("TOП-0.66");
-		it2.setType("TOП-M-0.66");
-
 		CurrentTransformer ctt1 = new CurrentTransformer();
 		CurrentTransformer ctt2 = new CurrentTransformer();
-		ctt1.getListCurTransformerTypes().add(it1);
-		it1.setCurrentTransformer(ctt1);
-		ctt2.getListCurTransformerTypes().add(it2);
-		it2.setCurrentTransformer(ctt2);
+		ctt1.setName("ТОП-0,66");
+		ctt1.setKI(200);
+		ctt2.setName("ТОП-0,66М");
+		ctt2.setKI(160);
 
 		VoltageTransformer utt1 = new VoltageTransformer();
 		VoltageTransformer utt2 = new VoltageTransformer();
-		utt1.getListVoltTransformerTypes().add(ut1);
-		ut1.setVoltageTransformer(utt1);
-		utt2.getListVoltTransformerTypes().add(ut2);
-		ut2.setVoltageTransformer(utt2);
+		utt1.setName("ЗНОЛ-1");
+		utt2.setName("ЗНОЛ-2");
+		utt1.setKU(5000);
+		utt2.setKU(10000);
 
 		EnergyMeterType emt1 = new EnergyMeterType();
 		emt1.setType("CC301-5.1");
@@ -43,25 +34,24 @@ public class Test {
 		EnergyMeter em1 = new EnergyMeter();
 		EnergyMeter em2 = new EnergyMeter();
 
-		em1.getListTypes().add(emt1);
-		emt1.setEnergyMeter(em1);
-		em2.getListTypes().add(emt2);
-		emt2.setEnergyMeter(em2);
+		em1.setEnergymeterType("CC301-5.1");
+
+		em2.setEnergymeterType("CC301-10.1");
 
 		Fider f1 = new Fider();
 		Fider f2 = new Fider();
-		f1.getListCurrentTransformers().add(ctt1);
+		f1.setCurrentTransformer(ctt1);
 		ctt1.setFider(f1);
-		f1.getListVoltageTransformers().add(utt1);
+		f1.setVoltageTransformer(utt1);
 		utt1.setFider(f1);
-		f1.getListEnergyMeters().add(em1);
+		f1.setEnergyMeter(em1);
 		em1.setFider(f1);
 		f1.setName("яч.510");
-		f2.getListCurrentTransformers().add(ctt2);
+		f2.setCurrentTransformer(ctt2);
 		ctt2.setFider(f2);
-		f2.getListVoltageTransformers().add(utt2);
+		f2.setVoltageTransformer(utt2);
 		utt2.setFider(f2);
-		f2.getListEnergyMeters().add(em2);
+		f2.setEnergyMeter(em2);
 		em2.setFider(f2);
 		f2.setName("яч.516");
 
@@ -72,24 +62,15 @@ public class Test {
 		sb.getListFiders().add(f2);
 		f2.setSectionBus(sb);
 
-		Voltage voltage = new Voltage();
-		voltage.setVoltage("0.4 кВ");
-
 		ElectricalBus ebus = new ElectricalBus();
-		ebus.getListVoltages().add(voltage);
-		voltage.setElectricalBus(ebus);
+		ebus.setVoltage("10кВ");
 		ebus.getListSections().add(sb);
 		sb.setElectricalBus(ebus);
 
-		StationType stype = new StationType();
-		stype.setTypeStation("ТП");
-
 		TransformerStation ts = new TransformerStation();
-		ts.getListTypes().add(stype);
-		stype.setTransformerStation(ts);
 		ts.getListElectricalBusses().add(ebus);
 		ebus.setTransformerStation(ts);
-		ts.setName("ТП-26 Цех");
+		ts.setName("ТП-2634");
 
 		customer.getListStations().add(ts);
 		ts.setCustomer(customer);
@@ -158,9 +139,34 @@ public class Test {
 	}
 
 	public static void delCustomer(DAO h, String name) {
-		Customer c = h.getCustomer("Строммашина");
+		Customer c = h.getCustomer("ЖМС");
 
 		h.deleteCustomer(c);
+
+	}
+
+	public static void getCustomer(DAO h, String name) {
+		Customer c = h.getCustomer("ЖМС");
+		TransformerStation ts = c.getListStations().get(0);
+		System.out.println("Подстанция: " + ts.getName());
+		ElectricalBus eb = ts.getListElectricalBusses().get(0);
+		System.out.println("Шина: " + eb.getVoltage());
+		SectionBus sb = eb.getListSections().get(0);
+		System.out.println("Секция: " + sb.getName());
+		System.out.println("Фидеры: ");
+		List<Fider> flist = sb.getListFiders();
+		if (!flist.isEmpty()) {
+			for (Fider fider : flist) {
+				System.out.println("Фидер: " + fider.getName());
+				System.out.println("Счетчик: " + fider.getEnergyMeter().getEnergymeterType());
+				System.out.println("Трансформатор тока: " + fider.getCurrentTransformer().getName());
+				System.out.println("КТТ: " + fider.getCurrentTransformer().getKI());
+				System.out.println("Трансформатор напряжения: " + fider.getVoltageTransformer().getName());
+				System.out.println("КU: " + fider.getVoltageTransformer().getKU());
+				System.out.println("=========================================");
+
+			}
+		}
 
 	}
 

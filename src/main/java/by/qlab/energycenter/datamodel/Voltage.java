@@ -9,7 +9,6 @@ public class Voltage implements Serializable {
 	private static final long serialVersionUID = 9017829640938546499L;
 	private long voltage_id;
 	private String voltage;
-	private ElectricalBus electricalBus;
 
 	public Voltage() {
 		super();
@@ -29,14 +28,6 @@ public class Voltage implements Serializable {
 
 	public void setVoltage(String voltage) {
 		this.voltage = voltage;
-	}
-
-	public ElectricalBus getElectricalBus() {
-		return electricalBus;
-	}
-
-	public void setElectricalBus(ElectricalBus electricalBus) {
-		this.electricalBus = electricalBus;
 	}
 
 }

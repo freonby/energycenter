@@ -13,14 +13,7 @@
         <many-to-one name="customer" class="by.qlab.energycenter.datamodel.Customer" fetch="join">
             <column name="CUSTOMER_ID" />
         </many-to-one>
-        <list name="listTypes" inverse="false" table="STATIONTYPE" lazy="true" cascade="all" fetch="select">
-            <key>
-                <column name="TRANSFORMERSTATION_ID" />
-            </key>
-            <list-index></list-index>
-            <one-to-many class="by.qlab.energycenter.datamodel.StationType" />
-        </list>
-        <list name="listElectricalBusses" inverse="false" table="ELECTRICALBUS" lazy="true" cascade="all" fetch="select">
+        <list name="listElectricalBusses" inverse="false" table="ELECTRICALBUS" lazy="false" cascade="all" fetch="join">
             <key>
                 <column name="TRANSFORMERSTATION_ID" />
             </key>

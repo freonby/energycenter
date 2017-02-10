@@ -10,15 +10,9 @@
         <property name="number" type="java.lang.String">
             <column name="NUMBER" />
         </property>
-        <many-to-one name="fider" class="by.qlab.energycenter.datamodel.Fider" fetch="join">
-            <column name="FIDER_ID" />
-        </many-to-one>
-        <list name="listTypes" inverse="false" table="ENERGYMETERTYPE" lazy="true" cascade="all" fetch="select">
-            <key>
-                <column name="ENERGYMETER_ID" />
-            </key>
-            <list-index></list-index>
-            <one-to-many class="by.qlab.energycenter.datamodel.EnergyMeterType" />
-        </list>
+        <one-to-one name="fider" class="by.qlab.energycenter.datamodel.Fider" fetch="join" lazy="false"></one-to-one>
+        <property name="energymeterType" type="java.lang.String">
+            <column name="ENERGYMETERTYPE" />
+        </property>
     </class>
 </hibernate-mapping>

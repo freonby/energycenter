@@ -1,8 +1,6 @@
 package by.qlab.energycenter.datamodel;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class VoltageTransformer implements Serializable {
 	/**
@@ -13,7 +11,6 @@ public class VoltageTransformer implements Serializable {
 	private String name;
 	private Fider fider;
 	private int KU;
-	private List<UTType> listVoltTransformerTypes = new ArrayList<UTType>();
 
 	public VoltageTransformer() {
 		super();
@@ -49,14 +46,6 @@ public class VoltageTransformer implements Serializable {
 
 	public void setKU(int kU) {
 		KU = kU;
-	}
-
-	public List<UTType> getListVoltTransformerTypes() {
-		return listVoltTransformerTypes;
-	}
-
-	public void setListVoltTransformerTypes(List<UTType> listVoltTransformerTypes) {
-		this.listVoltTransformerTypes = listVoltTransformerTypes;
 	}
 
 }

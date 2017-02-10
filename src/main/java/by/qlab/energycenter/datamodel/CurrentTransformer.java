@@ -1,8 +1,6 @@
 package by.qlab.energycenter.datamodel;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class CurrentTransformer implements Serializable {
 	/**
@@ -13,7 +11,6 @@ public class CurrentTransformer implements Serializable {
 	private String name;
 	private Fider fider;
 	private int KI;
-	private List<TTType> listCurTransformerTypes = new ArrayList<TTType>();
 
 	public CurrentTransformer() {
 		super();
@@ -49,14 +46,6 @@ public class CurrentTransformer implements Serializable {
 
 	public void setKI(int kI) {
 		KI = kI;
-	}
-
-	public List<TTType> getListCurTransformerTypes() {
-		return listCurTransformerTypes;
-	}
-
-	public void setListCurTransformerTypes(List<TTType> listCurTransformerTypes) {
-		this.listCurTransformerTypes = listCurTransformerTypes;
 	}
 
 }

@@ -11,7 +11,7 @@ public class ElectricalBus implements Serializable {
 	private static final long serialVersionUID = 4960230858927305820L;
 	private long electricalbus_id;
 	private TransformerStation transformerStation;
-	private List<Voltage> listVoltages = new ArrayList<Voltage>();
+	private String voltage;
 	private List<SectionBus> listSections = new ArrayList<SectionBus>();
 
 	public ElectricalBus() {
@@ -34,20 +34,20 @@ public class ElectricalBus implements Serializable {
 		this.transformerStation = transformerStation;
 	}
 
-	public List<Voltage> getListVoltages() {
-		return listVoltages;
-	}
-
-	public void setListVoltages(List<Voltage> listVoltages) {
-		this.listVoltages = listVoltages;
-	}
-
 	public List<SectionBus> getListSections() {
 		return listSections;
 	}
 
 	public void setListSections(List<SectionBus> listSections) {
 		this.listSections = listSections;
+	}
+
+	public String getVoltage() {
+		return voltage;
+	}
+
+	public void setVoltage(String voltage) {
+		this.voltage = voltage;
 	}
 
 }

@@ -9,7 +9,6 @@ public class EnergyMeterType implements Serializable {
 	private static final long serialVersionUID = -1110801707650510750L;
 	private long energymetertype_id;
 	private String type;
-	private EnergyMeter energyMeter;
 
 	public EnergyMeterType() {
 
@@ -29,14 +28,6 @@ public class EnergyMeterType implements Serializable {
 
 	public void setType(String type) {
 		this.type = type;
-	}
-
-	public EnergyMeter getEnergyMeter() {
-		return energyMeter;
-	}
-
-	public void setEnergyMeter(EnergyMeter energyMeter) {
-		this.energyMeter = energyMeter;
 	}
 
 }

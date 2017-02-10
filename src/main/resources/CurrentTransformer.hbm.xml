@@ -10,18 +10,9 @@
         <property name="name" type="java.lang.String">
             <column name="NAME" />
         </property>
-        <many-to-one name="fider" class="by.qlab.energycenter.datamodel.Fider" fetch="join">
-            <column name="FIDER_ID" />
-        </many-to-one>
+        <one-to-one name="fider" class="by.qlab.energycenter.datamodel.Fider" fetch="join" lazy="false"></one-to-one>
         <property name="KI" type="int">
             <column name="KI" />
         </property>
-        <list name="listCurTransformerTypes" inverse="false" table="TTTYPE" lazy="true" cascade="all" fetch="select">
-            <key>
-                <column name="CURRENTTRANSFORMER_ID" />
-            </key>
-            <list-index></list-index>
-            <one-to-many class="by.qlab.energycenter.datamodel.TTType" />
-        </list>
     </class>
 </hibernate-mapping>

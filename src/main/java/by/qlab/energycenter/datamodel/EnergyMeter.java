@@ -1,8 +1,6 @@
 package by.qlab.energycenter.datamodel;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class EnergyMeter implements Serializable {
 	/**
@@ -12,7 +10,7 @@ public class EnergyMeter implements Serializable {
 	private long energymeter_id;
 	private String number;
 	private Fider fider;
-	private List<EnergyMeterType> listTypes = new ArrayList<EnergyMeterType>();
+	private String energymeterType;
 
 	public EnergyMeter() {
 
@@ -42,12 +40,12 @@ public class EnergyMeter implements Serializable {
 		this.fider = fider;
 	}
 
-	public List<EnergyMeterType> getListTypes() {
-		return listTypes;
+	public String getEnergymeterType() {
+		return energymeterType;
 	}
 
-	public void setListTypes(List<EnergyMeterType> listTypes) {
-		this.listTypes = listTypes;
+	public void setEnergymeterType(String energymeterType) {
+		this.energymeterType = energymeterType;
 	}
 
 }

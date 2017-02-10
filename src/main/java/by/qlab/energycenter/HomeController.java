@@ -72,17 +72,18 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/adduser", method = RequestMethod.GET)
-	public ModelAndView addUser(@RequestParam String param) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("result2");
+	@ResponseBody
+	public String addUser(@RequestParam String param) {
+
 		// Test.initUser(hibdao, param);
 		Test.initCustomerBase(hibdao);
+		// Test.getCustomer(hibdao, param);
 		// Test.initCustomer(hibdao, param);
 		// Test.addTransStation(hibdao, param);
 		// Test.changeUser(hibdao, "Альф3333");
 		// Test.addElectricalBus(hibdao, param);
 		// Test.delCustomer(hibdao, param);
-		return mav;
+		return "";
 	}
 
 }
