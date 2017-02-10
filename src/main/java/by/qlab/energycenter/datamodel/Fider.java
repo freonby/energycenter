@@ -1,6 +1,9 @@
 package by.qlab.energycenter.datamodel;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+
+import com.google.gson.Gson;
 
 public class Fider implements Serializable {
 	/**
@@ -66,4 +69,19 @@ public class Fider implements Serializable {
 		this.voltageTransformer = voltageTransformer;
 	}
 
+	public String toJson() {
+
+		ArrayList<String> list = new ArrayList<String>();
+		list.add(name);
+		list.add(this.energyMeter.getNumber());
+		list.add(this.energyMeter.getEnergymeterType());
+		list.add(this.currentTransformer.getName());
+		list.add(Integer.toString(this.currentTransformer.getKI()));
+		list.add(this.voltageTransformer.getName());
+		list.add(Integer.toString(this.voltageTransformer.getKU()));
+		Gson gson = new Gson();
+		String json = gson.toJson(list);
+		return json;
+
+	}
 }

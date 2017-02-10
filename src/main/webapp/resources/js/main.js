@@ -213,11 +213,124 @@ function initWidgets() {
 	})
 }
 function onCriteriaChange() {
-    var 
-        startDate = $("#start-date").data("kendoDatePicker"),
-        endDate = $("#end-date").data("kendoDatePicker"),
-        filter = {          
-            startDate: kendo.format("{0:MM/dd/yyyy hh:mm:ss}", startDate.value()),
-            endDate: kendo.format("{0:MM/dd/yyyy hh:mm:ss}", endDate.value())
-        }    
+	var startDate = $("#start-date").data("kendoDatePicker"), endDate = $(
+			"#end-date").data("kendoDatePicker"), filter = {
+		startDate : kendo.format("{0:MM/dd/yyyy hh:mm:ss}", startDate.value()),
+		endDate : kendo.format("{0:MM/dd/yyyy hh:mm:ss}", endDate.value())
+	}
 }
+
+function meterInfo(label) {
+
+	$.ajax({
+		url : 'info',
+		data : ({
+			param : label
+
+		}),
+		success : function(data) {
+			var json = JSON.parse(data);
+			$("#deviceType").html(json[2]);
+			$("#number").html(json[1]);
+			$("#fiderName").html(json[0]);
+			$("#iTransformer").html(json[3] + " [KI= " + json[4] + "]");
+			$("#uTransformer").html(json[5] + " [KU= " + json[6] + "]");
+
+		}
+	});
+}
+$(document).ready(function() {
+
+	$("#treeview").kendoTreeView({
+		select : function(e) {
+			var treeview = $("#treeview").data("kendoTreeView");
+			// find the node with text
+			// var label = treeview.element.find(e.parent);
+			var parent = treeview.parent(treeview.element.find(e.node));
+			meterInfo(treeview.text(parent));
+			// kendoConsole.log(treeview.text(label));
+		}
+	}
+
+	);
+	getTable();
+	initWidgets();
+
+});
+// create ComboBox from select HTML element
+$("#size").kendoComboBox();
+$(function() {
+	$("#select-chart").kendoMobileButtonGroup({
+		select : function(e) {
+			var index = this.current().index();
+			switch (index) {
+			case 0:
+				kendoConsole.log("Тип графика: линия");
+				lineType();
+				break;
+			case 1:
+				kendoConsole.log("Тип графика: гистограмма");
+				gystType();
+				break;
+			case 2:
+				kendoConsole.log("Тип графика: площадь");
+				areaType();
+				break;
+			}
+		}
+	});
+});
+$(function() {
+	$("#select-energy").kendoMobileButtonGroup({
+		select : function(e) {
+			var index = this.current().index();
+			switch (index) {
+			case 0:
+				kendoConsole.log("Энергия: А+");
+				break;
+			case 1:
+				kendoConsole.log("Энергия: А-");
+				break;
+			case 2:
+				kendoConsole.log("Энергия: R+");
+				break;
+			case 3:
+				kendoConsole.log("Энергия: R-");
+				break;
+			}
+		}
+	});
+});
+$(function() {
+	$("#select-interval").kendoMobileButtonGroup({
+		select : function(e) {
+			var index = this.current().index();
+			switch (index) {
+			case 0:
+				kendoConsole.log("Интервал: 30 мин");
+				break;
+			case 1:
+
+				$.ajax({
+					url : 'adduser',
+					data : ({
+						param : "ЖМС"
+
+					}),
+					success : function(data) {
+						kendoConsole.log("added");
+					}
+				});
+
+				break;
+			case 2:
+				kendoConsole.log("Текущие показания");
+				break;
+			case 3:
+				kendoConsole.log("параметры электросети");
+
+				break;
+			}
+		}
+	});
+});

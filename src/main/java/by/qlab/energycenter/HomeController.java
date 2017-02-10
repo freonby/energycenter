@@ -1,6 +1,7 @@
 package by.qlab.energycenter;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import by.qlab.energycenter.dao.DAO;
 import by.qlab.energycenter.datamodel.Customer;
+import by.qlab.energycenter.datamodel.Fider;
 import by.qlab.energycenter.model.DeviceRequest;
 import by.qlab.energycenter.model.Interval30;
 
@@ -23,18 +25,15 @@ public class HomeController {
 	// LoggerFactory.getLogger(HomeController.class);
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView index() {
+	public ModelAndView index(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		// Test.initCustomerBase(hibdao);
-		Customer customer = hibdao.getCustomer("ЖМС");
-
+		Interval30 data = hibdao.getInterval30Day(3128814);
+		Customer customer = hibdao.getCustomer("Мое предприятие");
+		session.setAttribute("customer", customer);
+		session.setAttribute("graphdata", data);
 		mav.setViewName("index");
 		mav.addObject("customer", customer);
-		Interval30 data = hibdao.getInterval30Day(3128814);
-		mav.addObject("deviceType", "CC301");
-		mav.addObject("deviceNumber", data.getDevice_id());
-		mav.addObject("fider", data.getFiderName());
-		mav.addObject("deviceTime", data.getTime());
 
 		return mav;
 	}
@@ -60,8 +59,8 @@ public class HomeController {
 
 	@RequestMapping(value = "/gson", method = RequestMethod.GET)
 	@ResponseBody
-	public String goJson() {
-		Interval30 data = hibdao.getInterval30Day(3128814);
+	public String goJson(HttpSession session) {
+		Interval30 data = (Interval30) session.getAttribute("graphdata");
 		return data.toJson();
 	}
 
@@ -78,6 +77,17 @@ public class HomeController {
 		// Test.addElectricalBus(hibdao, param);
 		// Test.delCustomer(hibdao, "ЖМС2");
 		return "";
+	}
+
+	@RequestMapping(value = "/info", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
+	@ResponseBody
+	public String info(@RequestParam String param, HttpSession session) {
+		Customer c = (Customer) session.getAttribute("customer");
+		Fider f = c.findFiderByName(param);
+		if (f == null) {
+			return "";
+		}
+		return f.toJson();
 	}
 
 }

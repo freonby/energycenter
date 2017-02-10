@@ -84,7 +84,7 @@
 																			<li data-expanded="true"><span
 																				class="k-icon k-i-folder"></span>${fiderItem.name}
 																				<ul>
-																					<li><span class="k-icon k-i-calculator"></span>${fiderItem.energyMeter.energymeterType}</li>
+																					<li><span class="k-icon k-i-calculator meter"></span>${fiderItem.energyMeter.energymeterType}</li>
 																				</ul>
 																		</c:forEach>
 
@@ -105,16 +105,23 @@
 									<div
 										class="device-details col-xs-12 col-sm-4 col-lg-3 col-md-3">
 										<p>
-											<strong>Дата:</strong> ${deviceTime}
+											<strong>Дата: </strong> <i>${deviceTime}</i>
 										</p>
 										<p>
-											<strong>Устройство:</strong> ${deviceType}
+											<strong>Устройство: </strong><i id="deviceType"></i>
 										</p>
 										<p>
-											<strong>Заводской номер:</strong> ${deviceNumber}
+											<strong>Заводской номер: </strong><i id="number"></i>
 										</p>
 										<p>
-											<strong>Фидер:</strong> ${fider}
+											<strong>Фидер: </strong><i id="fiderName"></i>
+										</p>
+										<p>
+											<strong>Трансформатор тока: </strong><i id="iTransformer"></i>
+										</p>
+										<p>
+											<strong>Трансформатор напряжения: </strong><i
+												id="uTransformer"></i>
 										</p>
 
 									</div>
@@ -172,94 +179,8 @@
 	<!--dialog window container-->
 	<div id="dialog"></div>
 	<!--end dialog window container-->
-	<script>
-		$(document).ready(function() {
-
-			$("#treeview").kendoTreeView();
-			getTable();
-			initWidgets();
-
-		});
-	</script>
-	<script>
-		// create ComboBox from select HTML element
-		$("#size").kendoComboBox();
-		$(function() {
-			$("#select-chart").kendoMobileButtonGroup({
-				select : function(e) {
-					var index = this.current().index();
-					switch (index) {
-					case 0:
-						kendoConsole.log("Тип графика: линия");
-						lineType();
-						break;
-					case 1:
-						kendoConsole.log("Тип графика: гистограмма");
-						gystType();
-						break;
-					case 2:
-						kendoConsole.log("Тип графика: площадь");
-						areaType();
-						break;
-					}
-				}
-			});
-		});
-		$(function() {
-			$("#select-energy").kendoMobileButtonGroup({
-				select : function(e) {
-					var index = this.current().index();
-					switch (index) {
-					case 0:
-						kendoConsole.log("Энергия: А+");
-						break;
-					case 1:
-						kendoConsole.log("Энергия: А-");
-						break;
-					case 2:
-						kendoConsole.log("Энергия: R+");
-						break;
-					case 3:
-						kendoConsole.log("Энергия: R-");
-						break;
-					}
-				}
-			});
-		});
-		$(function() {
-			$("#select-interval").kendoMobileButtonGroup({
-				select : function(e) {
-					var index = this.current().index();
-					switch (index) {
-					case 0:
-						kendoConsole.log("Интервал: 30 мин");
-						break;
-					case 1:
-
-						$.ajax({
-							url : 'adduser',
-							data : ({
-								param : "ЖМС"
-
-							}),
-							success : function(data) {
-								kendoConsole.log("added");
-							}
-						});
-
-						break;
-					case 2:
-						kendoConsole.log("Текущие показания");
-						break;
-					case 3:
-						kendoConsole.log("параметры электросети");
-
-						break;
-					}
-				}
-			});
-		});
-	</script>
+	
+	
 	<!-- Bootstrap core JavaScript
 		================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->

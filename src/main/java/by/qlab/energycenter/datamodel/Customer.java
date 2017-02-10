@@ -148,4 +148,25 @@ public class Customer implements Serializable {
 		this.listStations = listStations;
 	}
 
+	public Fider findFiderByName(String fiderName) {
+		Fider find = null;
+		List<TransformerStation> list = this.listStations;
+		for (TransformerStation stList : list) {
+			for (ElectricalBus ebList : stList.getListElectricalBusses()) {
+				for (SectionBus sbList : ebList.getListSections()) {
+					for (Fider fider : sbList.getListFiders()) {
+						if (fider.getName().equals(fiderName)) {
+							find = fider;
+							break;
+						}
+					}
+				}
+
+			}
+
+		}
+		return find;
+
+	}
+
 }
