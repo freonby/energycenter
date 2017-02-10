@@ -231,13 +231,26 @@
 						kendoConsole.log("Интервал: 30 мин");
 						break;
 					case 1:
-						kendoConsole.log("Интервал: 60 мин");
+						
+						
+						$.ajax({
+							url : 'adduser',
+							data : ({
+								param : "ЖМС"
+
+							}),
+							success : function(data) {
+								kendoConsole.log("added");
+							}
+						});
+						
 						break;
 					case 2:
 						kendoConsole.log("Текущие показания");
 						break;
 					case 3:
 						kendoConsole.log("параметры электросети");
+						
 						break;
 					}
 				}

@@ -1,37 +1,34 @@
 package by.qlab.energycenter.datamodel;
 
-public class Voltage {
-	private long id;
+import java.io.Serializable;
+
+public class Voltage implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9017829640938546499L;
+	private long voltage_id;
 	private String voltage;
-	private TransformerStation transformerStation;
 	private ElectricalBus electricalBus;
 
 	public Voltage() {
 		super();
 	}
 
-	public long getId() {
-		return id;
+	public long getVoltage_id() {
+		return voltage_id;
+	}
+
+	public void setVoltage_id(long voltage_id) {
+		this.voltage_id = voltage_id;
 	}
 
 	public String getVoltage() {
 		return voltage;
 	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
-
 	public void setVoltage(String voltage) {
 		this.voltage = voltage;
-	}
-
-	public TransformerStation getTransformerStation() {
-		return transformerStation;
-	}
-
-	public void setTransformerStation(TransformerStation transformerStation) {
-		this.transformerStation = transformerStation;
 	}
 
 	public ElectricalBus getElectricalBus() {

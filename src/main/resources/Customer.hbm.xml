@@ -1,12 +1,11 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 08.02.2017 15:52:31 by Hibernate Tools 3.5.0.Final -->
+"http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="by.qlab.energycenter.datamodel.Customer" table="CUSTOMER">
-        <id name="id" type="long">
-            <column name="ID" />
-            <generator class="assigned" />
+        <id name="customer_id" type="long">
+            <column name="CUSTOMER_ID" />
+            <generator class="increment" />
         </id>
         <property name="companyName" type="java.lang.String">
             <column name="COMPANYNAME" />
@@ -44,9 +43,9 @@
         <property name="comment" type="java.lang.String">
             <column name="COMMENT" />
         </property>
-        <list name="listStations" inverse="false" table="TRANSFORMERSTATION" lazy="true">
+        <list name="listStations" inverse="false" table="TRANSFORMERSTATION" lazy="true" cascade="all" fetch="select">
             <key>
-                <column name="ID" />
+                <column name="CUSTOMER_ID" />
             </key>
             <list-index></list-index>
             <one-to-many class="by.qlab.energycenter.datamodel.TransformerStation" />

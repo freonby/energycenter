@@ -1,7 +1,13 @@
 package by.qlab.energycenter.datamodel;
 
-public class StationType {
-	private long id;
+import java.io.Serializable;
+
+public class StationType implements Serializable {
+	/**
+		 * 
+		 */
+	private static final long serialVersionUID = -2635004433952467941L;
+	private long stationtype_id;
 	private String typeStation;
 	private TransformerStation transformerStation;
 
@@ -9,16 +15,16 @@ public class StationType {
 		super();
 	}
 
-	public long getId() {
-		return id;
+	public long getStationtype_id() {
+		return stationtype_id;
+	}
+
+	public void setStationtype_id(long stationtype_id) {
+		this.stationtype_id = stationtype_id;
 	}
 
 	public String getTypeStation() {
 		return typeStation;
-	}
-
-	public void setId(long id) {
-		this.id = id;
 	}
 
 	public void setTypeStation(String typeStation) {
@@ -32,4 +38,5 @@ public class StationType {
 	public void setTransformerStation(TransformerStation transformerStation) {
 		this.transformerStation = transformerStation;
 	}
+
 }

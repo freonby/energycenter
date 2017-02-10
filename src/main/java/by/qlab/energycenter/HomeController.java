@@ -6,10 +6,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import by.qlab.energycenter.dao.DAO;
+import by.qlab.energycenter.datamodel.Test;
 import by.qlab.energycenter.model.DeviceRequest;
 import by.qlab.energycenter.model.Interval30;
 
@@ -23,12 +25,23 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView index() {
 		ModelAndView mav = new ModelAndView();
+
+		/*
+		 * Customer customer = new Customer(); customer.setCompanyName("ЖМС");
+		 * hibdao.addCustomer(customer); Customer customer1 =
+		 * hibdao.getCustomer("ЖМС"); TransformerStation ts = new
+		 * TransformerStation(); ts.setName("ПС 110кВ ФИМ"); ts.setId(1);
+		 * ts.setCustomer(customer1); Set<TransformerStation> tset = new
+		 * HashSet<TransformerStation>(); tset.add(ts);
+		 * customer1.setListStations(tset); hibdao.updateCustomer(customer1);
+		 */
 		mav.setViewName("index");
 		Interval30 data = hibdao.getInterval30Day(3128814);
 		mav.addObject("deviceType", "CC301");
 		mav.addObject("deviceNumber", data.getDevice_id());
 		mav.addObject("fider", data.getFiderName());
 		mav.addObject("deviceTime", data.getTime());
+
 		return mav;
 	}
 	/*
@@ -56,6 +69,20 @@ public class HomeController {
 	public String goJson() {
 		Interval30 data = hibdao.getInterval30Day(3128814);
 		return data.toJson();
+	}
+
+	@RequestMapping(value = "/adduser", method = RequestMethod.GET)
+	public ModelAndView addUser(@RequestParam String param) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("result2");
+		// Test.initUser(hibdao, param);
+		Test.initCustomerBase(hibdao);
+		// Test.initCustomer(hibdao, param);
+		// Test.addTransStation(hibdao, param);
+		// Test.changeUser(hibdao, "Альф3333");
+		// Test.addElectricalBus(hibdao, param);
+		// Test.delCustomer(hibdao, param);
+		return mav;
 	}
 
 }

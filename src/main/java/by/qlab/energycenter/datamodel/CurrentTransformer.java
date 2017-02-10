@@ -1,48 +1,38 @@
 package by.qlab.energycenter.datamodel;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
-public class CurrentTransformer {
-	private long id;
+public class CurrentTransformer implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7323272196870017748L;
+	private long currenttransformer_id;
 	private String name;
 	private Fider fider;
 	private int KI;
-	private ArrayList<TransformerType> listTypes = new ArrayList<TransformerType>();
+	private List<TTType> listCurTransformerTypes = new ArrayList<TTType>();
 
 	public CurrentTransformer() {
 		super();
 	}
 
-	public long getId() {
-		return id;
+	public long getCurrenttransformer_id() {
+		return currenttransformer_id;
+	}
+
+	public void setCurrenttransformer_id(long currenttransformer_id) {
+		this.currenttransformer_id = currenttransformer_id;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public int getKI() {
-		return KI;
-	}
-
-	public ArrayList<TransformerType> getListTypes() {
-		return listTypes;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public void setKI(int kI) {
-		KI = kI;
-	}
-
-	public void setListTypes(ArrayList<TransformerType> listTypes) {
-		this.listTypes = listTypes;
 	}
 
 	public Fider getFider() {
@@ -52,4 +42,21 @@ public class CurrentTransformer {
 	public void setFider(Fider fider) {
 		this.fider = fider;
 	}
+
+	public int getKI() {
+		return KI;
+	}
+
+	public void setKI(int kI) {
+		KI = kI;
+	}
+
+	public List<TTType> getListCurTransformerTypes() {
+		return listCurTransformerTypes;
+	}
+
+	public void setListCurTransformerTypes(List<TTType> listCurTransformerTypes) {
+		this.listCurTransformerTypes = listCurTransformerTypes;
+	}
+
 }

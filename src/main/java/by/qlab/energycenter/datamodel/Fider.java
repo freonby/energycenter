@@ -1,54 +1,71 @@
 package by.qlab.energycenter.datamodel;
 
-public class Fider {
-	private long id;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Fider implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3304501375317136168L;
+	private long fider_id;
 	private String name;
-	private EnergyMeter energyMeter;
-	private CurrentTransformer currentTransformer;
-	private VoltageTransformer voltageTransformer;
+	private SectionBus sectionBus;
+	private List<EnergyMeter> listEnergyMeters = new ArrayList<EnergyMeter>();
+	private List<CurrentTransformer> listCurrentTransformers = new ArrayList<CurrentTransformer>();
+	private List<VoltageTransformer> listVoltageTransformers = new ArrayList<VoltageTransformer>();
 
 	public Fider() {
 		super();
 	}
 
-	public long getId() {
-		return id;
+	public long getFider_id() {
+		return fider_id;
+	}
+
+	public void setFider_id(long fider_id) {
+		this.fider_id = fider_id;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public EnergyMeter getEnergyMeter() {
-		return energyMeter;
-	}
-
-	public CurrentTransformer getCurrentTransformer() {
-		return currentTransformer;
-	}
-
-	public VoltageTransformer getVoltageTransformer() {
-		return voltageTransformer;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public void setEnergyMeter(EnergyMeter energyMeter) {
-		this.energyMeter = energyMeter;
+	public SectionBus getSectionBus() {
+		return sectionBus;
 	}
 
-	public void setCurrentTransformer(CurrentTransformer currentTransformer) {
-		this.currentTransformer = currentTransformer;
+	public void setSectionBus(SectionBus sectionBus) {
+		this.sectionBus = sectionBus;
 	}
 
-	public void setVoltageTransformer(VoltageTransformer voltageTransformer) {
-		this.voltageTransformer = voltageTransformer;
+	public List<EnergyMeter> getListEnergyMeters() {
+		return listEnergyMeters;
+	}
+
+	public void setListEnergyMeters(List<EnergyMeter> listEnergyMeters) {
+		this.listEnergyMeters = listEnergyMeters;
+	}
+
+	public List<CurrentTransformer> getListCurrentTransformers() {
+		return listCurrentTransformers;
+	}
+
+	public void setListCurrentTransformers(List<CurrentTransformer> listCurrentTransformers) {
+		this.listCurrentTransformers = listCurrentTransformers;
+	}
+
+	public List<VoltageTransformer> getListVoltageTransformers() {
+		return listVoltageTransformers;
+	}
+
+	public void setListVoltageTransformers(List<VoltageTransformer> listVoltageTransformers) {
+		this.listVoltageTransformers = listVoltageTransformers;
 	}
 
 }

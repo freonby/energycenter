@@ -1,9 +1,15 @@
 package by.qlab.energycenter.datamodel;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
-public class Customer {
-	private long id;
+public class Customer implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2508685783402372945L;
+	private long customer_id;
 	private String companyName;
 	private String address;
 	private String email;
@@ -16,7 +22,7 @@ public class Customer {
 	private String bankAccount;
 	private String contactPerson;
 	private String comment;
-	private ArrayList<TransformerStation> listStations = new ArrayList<TransformerStation>();
+	private List<TransformerStation> listStations = new ArrayList<TransformerStation>();
 
 	public Customer() {
 
@@ -30,12 +36,12 @@ public class Customer {
 		this.contactPerson = contactPerson;
 	}
 
-	public long getId() {
-		return id;
+	public long getCustomer_id() {
+		return customer_id;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setCustomer_id(long customer_id) {
+		this.customer_id = customer_id;
 	}
 
 	public String getCompanyName() {
@@ -134,11 +140,11 @@ public class Customer {
 		this.comment = comment;
 	}
 
-	public ArrayList<TransformerStation> getListStations() {
+	public List<TransformerStation> getListStations() {
 		return listStations;
 	}
 
-	public void setListStations(ArrayList<TransformerStation> listStations) {
+	public void setListStations(List<TransformerStation> listStations) {
 		this.listStations = listStations;
 	}
 
