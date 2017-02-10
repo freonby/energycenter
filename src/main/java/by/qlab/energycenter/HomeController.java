@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import by.qlab.energycenter.dao.DAO;
-import by.qlab.energycenter.datamodel.Test;
+import by.qlab.energycenter.datamodel.Customer;
 import by.qlab.energycenter.model.DeviceRequest;
 import by.qlab.energycenter.model.Interval30;
 
@@ -25,17 +25,11 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView index() {
 		ModelAndView mav = new ModelAndView();
+		// Test.initCustomerBase(hibdao);
+		Customer customer = hibdao.getCustomer("ЖМС");
 
-		/*
-		 * Customer customer = new Customer(); customer.setCompanyName("ЖМС");
-		 * hibdao.addCustomer(customer); Customer customer1 =
-		 * hibdao.getCustomer("ЖМС"); TransformerStation ts = new
-		 * TransformerStation(); ts.setName("ПС 110кВ ФИМ"); ts.setId(1);
-		 * ts.setCustomer(customer1); Set<TransformerStation> tset = new
-		 * HashSet<TransformerStation>(); tset.add(ts);
-		 * customer1.setListStations(tset); hibdao.updateCustomer(customer1);
-		 */
 		mav.setViewName("index");
+		mav.addObject("customer", customer);
 		Interval30 data = hibdao.getInterval30Day(3128814);
 		mav.addObject("deviceType", "CC301");
 		mav.addObject("deviceNumber", data.getDevice_id());
@@ -76,13 +70,13 @@ public class HomeController {
 	public String addUser(@RequestParam String param) {
 
 		// Test.initUser(hibdao, param);
-		Test.initCustomerBase(hibdao);
+		// Test.initCustomerBase(hibdao);
 		// Test.getCustomer(hibdao, param);
 		// Test.initCustomer(hibdao, param);
 		// Test.addTransStation(hibdao, param);
 		// Test.changeUser(hibdao, "Альф3333");
 		// Test.addElectricalBus(hibdao, param);
-		// Test.delCustomer(hibdao, param);
+		// Test.delCustomer(hibdao, "ЖМС2");
 		return "";
 	}
 

@@ -139,7 +139,7 @@ public class Test {
 	}
 
 	public static void delCustomer(DAO h, String name) {
-		Customer c = h.getCustomer("ЖМС");
+		Customer c = h.getCustomer(name);
 
 		h.deleteCustomer(c);
 

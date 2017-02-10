@@ -63,33 +63,37 @@
 						<h3>ПАНЕЛЬ УПРАВЛЕНИЯ</h3>
 						<!--TREE container-->
 						<ul id="treeview">
-							<li data-expanded="true"><span class="k-icon k-i-folder"></span>
-								ООО Интегра-Плюс
+
+							<li data-expanded="true"><span class="k-icon k-i-folder"></span>${customer.companyName}
 								<ul>
-									<li data-expanded="true"><span
-										class="k-icon k-i-folder-open"></span>ТП2154
-										<ul>
-											<li><span class="k-icon k-i-calculator"></span>Ввод Т1</li>
-											<li><span class="k-icon k-i-calculator"></span>Ввод Т2</li>
-											<li><span class="k-icon k-i-calculator"></span>ТСН</li>
-										</ul></li>
-									<li data-expanded="true"><span class="k-icon k-i-folder"></span>Цех
-										16
-										<ul>
-											<li data-expanded="true"><span
-												class="k-icon k-i-folder-open"></span>ВРУ
-												<ul>
-													<li><span class="k-icon k-i-calculator"></span>Компрессор
-														№4</li>
-													<li><span class="k-icon k-i-calculator"></span>Насосная
-														станция</li>
-												</ul></li>
-											<li><span class="k-icon k-i-calculator"></span>МТС</li>
-										</ul></li>
-									<li><span class="k-icon k-i-calculator"></span>СС301</li>
-									<li><span class="k-icon k-i-calculator"></span>СС101</li>
-									<li><span class="k-icon k-i-calculator"></span>СС301</li>
-									<li><span class="k-icon k-i-calculator"></span>СС301</li>
+									<c:forEach var="stationItem" items="${customer.listStations}">
+										<li data-expanded="true"><span class="k-icon k-i-folder"></span>${stationItem.name}
+											<ul>
+												<c:forEach var="electricalbusItem"
+													items="${stationItem.listElectricalBusses}">
+													<li data-expanded="true"><span
+														class="k-icon k-i-folder"></span>${electricalbusItem.voltage}
+														<ul>
+															<c:forEach var="sectionbusItem"
+																items="${electricalbusItem.listSections}">
+																<li data-expanded="true"><span
+																	class="k-icon k-i-folder"></span>${sectionbusItem.name}
+																	<ul>
+																		<c:forEach var="fiderItem"
+																			items="${sectionbusItem.listFiders}">
+																			<li data-expanded="true"><span
+																				class="k-icon k-i-folder"></span>${fiderItem.name}
+																				<ul>
+																					<li><span class="k-icon k-i-calculator"></span>${fiderItem.energyMeter.energymeterType}</li>
+																				</ul>
+																		</c:forEach>
+
+																	</ul>
+															</c:forEach>
+														</ul>
+												</c:forEach>
+											</ul></li>
+									</c:forEach>
 								</ul></li>
 						</ul>
 						<!--END TREE container-->
@@ -231,8 +235,7 @@
 						kendoConsole.log("Интервал: 30 мин");
 						break;
 					case 1:
-						
-						
+
 						$.ajax({
 							url : 'adduser',
 							data : ({
@@ -243,14 +246,14 @@
 								kendoConsole.log("added");
 							}
 						});
-						
+
 						break;
 					case 2:
 						kendoConsole.log("Текущие показания");
 						break;
 					case 3:
 						kendoConsole.log("параметры электросети");
-						
+
 						break;
 					}
 				}
