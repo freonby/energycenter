@@ -1,8 +1,6 @@
 package by.qlab.energycenter.datamodel;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import by.qlab.energycenter.dao.DAO;
 
@@ -77,36 +75,6 @@ public class Test {
 		customer.setCompanyName("ЖМС");
 		customer.setAddress("г.Жлобин");
 		dao.addCustomer(customer);
-
-	}
-
-	public static void initUser(DAO h, String name) {
-		User u = new User();
-		u.setUserLogin(name);
-		Role r1 = new Role();
-		Role r2 = new Role();
-		Role r3 = new Role();
-		r1.setRole("admin");
-		r2.setRole("user");
-		r3.setRole("anonym");
-		r1.setUser(u);
-		r2.setUser(u);
-		r3.setUser(u);
-		Set<Role> rset = new HashSet<Role>();
-		rset.add(r1);
-		rset.add(r2);
-		rset.add(r3);
-		u.getRoles().addAll(rset);
-
-		h.addUser(u);
-
-	}
-
-	public static void changeUser(DAO h, String name) {
-		User u = h.getUser(1);
-		u.setUserLogin(name);
-
-		h.addUser(u);
 
 	}
 

@@ -2,10 +2,10 @@ package by.qlab.energycenter.model;
 
 public class Item30 {
 	private String interval;
-	private float value;
+	private double value;
 	private String color;
 
-	public Item30(String interval, float value, String color) {
+	public Item30(String interval, double value, String color) {
 		super();
 		this.interval = interval;
 		this.value = value;
@@ -27,11 +27,11 @@ public class Item30 {
 		this.interval = interval;
 	}
 
-	public float getValue() {
+	public double getValue() {
 		return value;
 	}
 
-	public void setValue(float value) {
+	public void setValue(double value) {
 		this.value = value;
 	}
 

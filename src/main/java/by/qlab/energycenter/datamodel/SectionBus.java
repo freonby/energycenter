@@ -50,4 +50,20 @@ public class SectionBus implements Serializable {
 		this.listFiders = listFiders;
 	}
 
+	@Override
+	public String toString() {
+		StringBuffer sb = new StringBuffer();
+		for (Fider fider : listFiders) {
+			sb.append(fider.getName());
+			sb.append("\n");
+			sb.append(fider.getEnergyMeter().getEnergymeterType());
+			sb.append("\n");
+			sb.append("KTT= " + fider.getCurrentTransformer().getKI());
+			sb.append("\n");
+			sb.append("KTU= " + fider.getVoltageTransformer().getKU());
+			sb.append("\n");
+
+		}
+		return sb.toString();
+	}
 }

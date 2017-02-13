@@ -169,4 +169,21 @@ public class Customer implements Serializable {
 
 	}
 
+	public List<Fider> allFiders() {
+		List<Fider> find = new ArrayList<Fider>();
+		List<TransformerStation> list = this.listStations;
+		for (TransformerStation stList : list) {
+			for (ElectricalBus ebList : stList.getListElectricalBusses()) {
+				for (SectionBus sb : ebList.getListSections()) {
+					if (sb.getListFiders() != null)
+						find.addAll(sb.getListFiders());
+				}
+
+			}
+
+		}
+		return find;
+
+	}
+
 }

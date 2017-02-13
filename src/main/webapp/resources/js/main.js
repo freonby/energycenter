@@ -1,14 +1,16 @@
 var night = "#2F2F4C";
 var maximum = "#C7504F";
 var day = "#C0B48B";
-var chartType = "column";
-var jsonarray = "";
+var chartType ="column";
 
 function createChart() {
 	getTable();
 	$("#chart").kendoChart({
+		
+		
 		dataSource : {
 			transport : {
+				
 				read : {
 					url : "gson",
 					dataType : "json"
@@ -36,7 +38,7 @@ function createChart() {
 			colorField : "color"
 		} ],
 		valueAxis : {
-			max : 160,
+			max : 50,
 			majorGridLines : {
 				visible : true
 			},
@@ -203,12 +205,12 @@ function getTable() {
 }
 function initWidgets() {
 	$("#start-date").kendoDatePicker({
-		value : new Date(2017, 0, 1),
+		value : new Date(2017, 1, 1),
 		change : onCriteriaChange
 	})
 
 	$("#end-date").kendoDatePicker({
-		value : new Date(2017, 0, 1),
+		value : new Date(2017, 1, 7),
 		change : onCriteriaChange
 	})
 }
@@ -231,10 +233,11 @@ function meterInfo(label) {
 		success : function(data) {
 			var json = JSON.parse(data);
 			$("#deviceType").html(json[2]);
-			$("#number").html(json[1]);
+			$("#number").html(json[1]);		
 			$("#fiderName").html(json[0]);
 			$("#iTransformer").html(json[3] + " [KI= " + json[4] + "]");
 			$("#uTransformer").html(json[5] + " [KU= " + json[6] + "]");
+			createChart();
 
 		}
 	});
@@ -245,10 +248,10 @@ $(document).ready(function() {
 		select : function(e) {
 			var treeview = $("#treeview").data("kendoTreeView");
 			// find the node with text
-			// var label = treeview.element.find(e.parent);
+			//var label = treeview.element.find(e.node);
 			var parent = treeview.parent(treeview.element.find(e.node));
 			meterInfo(treeview.text(parent));
-			// kendoConsole.log(treeview.text(label));
+			kendoConsole.log(treeview.text(parent));
 		}
 	}
 

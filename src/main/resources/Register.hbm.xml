@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="by.qlab.energycenter.databuffer.Register" table="REGISTER">
+        <id name="register_id" type="long">
+            <column name="REGISTER_ID" />
+            <generator class="increment" />
+        </id>
+        <property name="energyMeter_id" type="long">
+            <column name="ENERGYMETER_ID" />
+        </property>
+        <property name="fider_id" type="long">
+            <column name="FIDER_ID" />
+        </property>
+        <property name="energyMeter_number" type="java.lang.String">
+            <column name="ENERGYMETER_NUMBER" />
+        </property>
+        <property name="energyType" type="int">
+            <column name="ENERGYTYPE" />
+        </property>
+        <property name="date" type="java.util.Date">
+            <column name="DATE" />
+        </property>
+        <property name="intervalNumber" type="int">
+            <column name="INTERVALNUMBER" />
+        </property>
+        <property name="consumption" type="double" precision="6">
+            <column name="CONSUMPTION" />
+        </property>
+        <property name="readout" type="double" precision="6">
+            <column name="READOUT" />
+        </property>
+    </class>
+</hibernate-mapping>

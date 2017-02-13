@@ -1,13 +1,14 @@
 package by.qlab.energycenter.dao;
 
+import java.util.Date;
+import java.util.List;
+
+import by.qlab.energycenter.databuffer.IntervalStrings;
+import by.qlab.energycenter.databuffer.Register;
+import by.qlab.energycenter.databuffer.TimeZone;
 import by.qlab.energycenter.datamodel.Customer;
-import by.qlab.energycenter.datamodel.User;
-import by.qlab.energycenter.model.Interval30;
 
 public interface DAO {
-	public Interval30 getInterval30Day(long device_id);
-
-	public void addInterval30Day(Interval30 interval30);
 
 	public Customer getCustomer(String companyName);
 
@@ -15,8 +16,16 @@ public interface DAO {
 
 	public void deleteCustomer(Customer customer);
 
-	public User getUser(long user_id);
+	public List<Register> getRegisterList(String energyMeterNumber, int energyType, Date start_YYYY_MM_DD, Date end_YYYY_MM_DD);
 
-	public void addUser(User user);
+	public List<Register> getAllRegisterList(Date start_YYYY_MM_DD, Date end_YYYY_MM_DD);
+
+	public Register getRegister(String energyMeterNumber, int intervalNumber, int energyType, Date date);
+
+	public void addRegister(Register register);
+
+	public List<IntervalStrings> getIntervals();
+
+	public List<TimeZone> getZone();
 
 }

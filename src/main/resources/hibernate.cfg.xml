@@ -8,8 +8,6 @@
 		<property name="hbm2ddl.auto">update</property>
 		<property name="show_sql">true</property>
 		<mapping resource="Interval30.hbm.xml" />
-<!-- <mapping resource="User.hbm.xml" />
-<mapping resource="Role.hbm.xml" /> -->
 		<mapping resource="Customer.hbm.xml" />
 		<mapping resource="TransformerStation.hbm.xml" />
 		<mapping resource="CurrentTransformer.hbm.xml" />
@@ -20,5 +18,9 @@
 		<mapping resource="SectionBus.hbm.xml" />
 		<mapping resource="Voltage.hbm.xml" />
 		<mapping resource="VoltageTransformer.hbm.xml" />
+		<mapping resource="Register.hbm.xml" />
+		<mapping resource="IntervalStrings.hbm.xml" />
+		<mapping resource="TimeZone.hbm.xml" />
+		
 	</session-factory>
 </hibernate-configuration>

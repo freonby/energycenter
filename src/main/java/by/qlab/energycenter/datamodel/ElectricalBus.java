@@ -50,4 +50,34 @@ public class ElectricalBus implements Serializable {
 		this.voltage = voltage;
 	}
 
+	public SectionBus getSectionBusByName(String nameSection) {
+
+		for (SectionBus sectionBus : listSections) {
+			if (sectionBus.getName().equals(nameSection))
+				return sectionBus;
+		}
+		return null;
+	}
+
+	@Override
+	public String toString() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("ШИНА " + voltage + "\n");
+		sb.append("СЕКЦИИ " + "\n");
+		for (SectionBus sectionBus : listSections) {
+			sb.append(sectionBus.getName() + "\n");
+			List<Fider> lf = sectionBus.getListFiders();
+			for (Fider fider : lf) {
+				sb.append(fider.getName() + "\n");
+				sb.append(fider.getEnergyMeter().getEnergymeterType() + "\n");
+				sb.append("KTT= " + fider.getCurrentTransformer().getKI());
+				sb.append("\n");
+				sb.append("KTU= " + fider.getVoltageTransformer().getKU());
+				sb.append("\n");
+
+			}
+		}
+		return sb.toString();
+	}
+
 }
