@@ -1,12 +1,17 @@
 package by.qlab.energycenter.databuffer;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Register {
+public class Register implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4344095814945261159L;
 	private long register_id;
 	private long energyMeter_id;
 	private long fider_id;
@@ -144,6 +149,19 @@ public class Register {
 			return filterList;
 		}
 		return null;
+
+	}
+
+	public static double findMaxConsumption(List<Register> list) {
+		double max = 0d;
+		if (list != null) {
+			for (Register register : list) {
+				if (register.getConsumption() >= max)
+					max = register.getConsumption();
+			}
+			return max;
+		}
+		return max;
 
 	}
 

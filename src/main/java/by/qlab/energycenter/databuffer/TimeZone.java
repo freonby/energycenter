@@ -1,8 +1,13 @@
 package by.qlab.energycenter.databuffer;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class TimeZone {
+public class TimeZone implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8930018472683110564L;
 	private long id;
 	private int code;
 	private String hexColor;

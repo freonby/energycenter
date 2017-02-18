@@ -1,7 +1,6 @@
 package by.qlab.energycenter;
 
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -43,17 +42,21 @@ public class HomeController {
 		List<Register> allData = hibdao.getAllRegisterList(from, to);
 		List<TimeZone> timeZone = hibdao.getZone();
 		List<IntervalStrings> stringsList = hibdao.getIntervals();
+
 		// Customer customer = hibdao.getCustomer("ЧСУП ЖМС (коммерческий
 		// учет)");
 		List<Fider> fList = customer.allFiders();
 		Fider first = null;
 		if (fList != null)
 			first = fList.get(1);
+		List<Register> list = Register.filterRegistersByEnergyTypeAndMeterNumber(allData, first.getEnergyMeter().getNumber(), 1);
+		session.setAttribute("energyType", 1);
 		session.setAttribute("customer", customer);
 		session.setAttribute("allData", allData);
 		session.setAttribute("timeZone", timeZone);
 		session.setAttribute("stringsList", stringsList);
-		session.setAttribute("emNumber", first.getEnergyMeter().getNumber());
+		session.setAttribute("graphdata", list);
+		session.setAttribute("intervalType", 30);
 		mav.setViewName("index");
 		mav.addObject("customer", customer);
 
@@ -83,21 +86,21 @@ public class HomeController {
 	@RequestMapping(value = "/gson", method = RequestMethod.GET)
 	@ResponseBody
 	public String goJson(HttpSession session) {
-		List<Register> allData = (List<Register>) session.getAttribute("allData");
-		int energyType = 1;
-		String emeter = (String) session.getAttribute("emNumber");
 		List<TimeZone> timeZone = (List<TimeZone>) session.getAttribute("timeZone");
 		List<IntervalStrings> stringsList = (List<IntervalStrings>) session.getAttribute("stringsList");
-		List<Register> list = Register.filterRegistersByEnergyTypeAndMeterNumber(allData, emeter, energyType);
-		LinkedList<Register> graphdata = new LinkedList<Register>(list);
-		// Register sum = graphdata.removeLast();
-		// double sumConsumption = sum.getConsumption();
-		// Register max = graphdata.removeLast();
-		// double maxConsumption = max.getConsumption();
-		// session.setAttribute("sum", sumConsumption);
-		// session.setAttribute("max", maxConsumption);
-		String json = JSONParser.to48Json(graphdata, timeZone, stringsList);
-		return json;
+		List<Register> graphdata = (List<Register>) session.getAttribute("graphdata");
+		int intervalType = (Integer) session.getAttribute("intervalType");
+		switch (intervalType) {
+		case 30:
+			String json30 = JSONParser.to48Json(graphdata, timeZone, stringsList);
+			return json30;
+		case 60:
+			String json60 = JSONParser.to24Json(graphdata, timeZone, stringsList);
+			return json60;
+
+		}
+
+		return "";
 	}
 
 	@RequestMapping(value = "/adduser", method = RequestMethod.GET)
@@ -123,6 +126,7 @@ public class HomeController {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/info", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
 	@ResponseBody
 	public String info(@RequestParam String param, HttpSession session) {
@@ -132,22 +136,57 @@ public class HomeController {
 			return "";
 		}
 		String emNumber = f.getEnergyMeter().getNumber();
+		List<Register> allData = (List<Register>) session.getAttribute("allData");
+		int energyType = (Integer) session.getAttribute("energyType");
+		List<Register> graphdata = Register.filterRegistersByEnergyTypeAndMeterNumber(allData, emNumber, energyType);
 		session.setAttribute("emNumber", emNumber);
+		session.setAttribute("graphdata", graphdata);
 		return f.toJson();
 	}
 
-	// @RequestMapping(value = "/max", method = RequestMethod.GET, produces =
-	// "text/html;charset=utf-8")
-	// @ResponseBody
-	// public String max(HttpSession session) {
-	// Customer c = (Customer) session.getAttribute("customer");
-	// //Fider f = c.findFiderByName(param);
-	// if (f == null) {
-	// return "";
-	// }
-	// String emNumber = f.getEnergyMeter().getNumber();
-	// session.setAttribute("emNumber", emNumber);
-	// return f.toJson();
-	// }
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "/dispatch", method = RequestMethod.GET)
+	@ResponseBody
+	public String dispatch(@RequestParam int paramEnergy, HttpSession session) {
+		/******************* codes *************************/
+		/** Types **********************************/
+		/*
+		 * 1:A+; 2:A-; 3:R+; 4:R-; 5:max value for graph view;
+		 */
+		List<Register> allData = (List<Register>) session.getAttribute("allData");
+		String emNumber = (String) session.getAttribute("emNumber");
+
+		switch (paramEnergy) {
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+			session.setAttribute("energyType", paramEnergy);
+			List<Register> graphdata = Register.filterRegistersByEnergyTypeAndMeterNumber(allData, emNumber, paramEnergy);
+			session.setAttribute("graphdata", graphdata);
+			break;
+		case 30:
+			session.setAttribute("intervalType", paramEnergy);
+			break;
+		case 60:
+			session.setAttribute("intervalType", paramEnergy);
+			break;
+		case 5:
+
+		default:
+
+		}
+
+		return "";
+	}
+
+	@RequestMapping(value = "/max", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
+	@ResponseBody
+	public String max(HttpSession session) {
+
+		double maxConsumption = (Double) session.getAttribute("maxConsumption");
+
+		return Double.toString(maxConsumption);
+	}
 
 }

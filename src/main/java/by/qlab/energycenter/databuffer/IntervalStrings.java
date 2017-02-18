@@ -1,8 +1,13 @@
 package by.qlab.energycenter.databuffer;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class IntervalStrings {
+public class IntervalStrings implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1056501445389137392L;
 	private long id;
 	private int intervalNumber;
 	private String intervalName;

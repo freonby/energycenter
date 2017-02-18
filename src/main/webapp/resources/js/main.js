@@ -4,6 +4,8 @@ var day = "#C0B48B";
 var chartType ="column";
 
 function createChart() {
+
+	//getMax();
 	getTable();
 	$("#chart").kendoChart({
 		
@@ -38,7 +40,7 @@ function createChart() {
 			colorField : "color"
 		} ],
 		valueAxis : {
-			max : 50,
+			
 			majorGridLines : {
 				visible : true
 			},
@@ -80,7 +82,12 @@ function createChart() {
 		}
 	});
 }
-$(document).ready(createChart);
+$(document).ready(function(){
+
+	createChart();	
+	
+	
+});
 
 $(document).bind("kendo:skinChange", createChart);
 $(window).on("resize", function() {
@@ -289,15 +296,23 @@ $(function() {
 			var index = this.current().index();
 			switch (index) {
 			case 0:
+				sendParamEnergy(1);
+				createChart();
 				kendoConsole.log("Энергия: А+");
 				break;
 			case 1:
+				sendParamEnergy(2);
+				createChart();
 				kendoConsole.log("Энергия: А-");
 				break;
 			case 2:
+				sendParamEnergy(3);
+				createChart();
 				kendoConsole.log("Энергия: R+");
 				break;
 			case 3:
+				sendParamEnergy(4);
+				createChart();
 				kendoConsole.log("Энергия: R-");
 				break;
 			}
@@ -310,30 +325,46 @@ $(function() {
 			var index = this.current().index();
 			switch (index) {
 			case 0:
+				sendParamEnergy(30);
+				createChart();
 				kendoConsole.log("Интервал: 30 мин");
 				break;
 			case 1:
-
-				$.ajax({
-					url : 'adduser',
-					data : ({
-						param : "ЖМС"
-
-					}),
-					success : function(data) {
-						kendoConsole.log("added");
-					}
-				});
-
+				sendParamEnergy(60);
+				createChart();
+				kendoConsole.log("Интервал: 60 мин");			
 				break;
-			case 2:
-				kendoConsole.log("Текущие показания");
-				break;
-			case 3:
-				kendoConsole.log("параметры электросети");
-
-				break;
+			
 			}
 		}
 	});
 });
+
+function sendParamEnergy(typeEnergy){
+	$.ajax({
+		url : 'dispatch',
+		data : ({
+			paramEnergy : typeEnergy
+
+		}),
+		success : function(data) {
+			kendoConsole.log("parameter dispatched in session");
+		}
+	});	
+	
+}
+function getMax(){
+
+	$.ajax({
+		url : 'max',
+		
+		success : function(data) {
+			var maxVal=JSON.parse(data);			
+			var m=new Number(maxVal);
+			kendoConsole.log("max interval="+m);
+			return m;
+
+		}
+	});	
+	
+}

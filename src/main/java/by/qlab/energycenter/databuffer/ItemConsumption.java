@@ -1,18 +1,18 @@
-package by.qlab.energycenter.model;
+package by.qlab.energycenter.databuffer;
 
-public class Item30 {
+public class ItemConsumption {
 	private String interval;
-	private double value;
+	private float value;
 	private String color;
 
-	public Item30(String interval, double value, String color) {
+	public ItemConsumption(String interval, float value, String color) {
 		super();
 		this.interval = interval;
 		this.value = value;
 		this.color = color;
 	}
 
-	public Item30() {
+	public ItemConsumption() {
 		super();
 		this.interval = "";
 		this.value = 0f;
@@ -27,11 +27,11 @@ public class Item30 {
 		this.interval = interval;
 	}
 
-	public double getValue() {
+	public float getValue() {
 		return value;
 	}
 
-	public void setValue(double value) {
+	public void setValue(float value) {
 		this.value = value;
 	}
 
