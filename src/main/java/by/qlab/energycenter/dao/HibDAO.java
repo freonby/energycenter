@@ -124,4 +124,14 @@ public class HibDAO implements DAO {
 		return listIntervals;
 	}
 
+	@Override
+	@Transactional
+	public Date findLastDate() {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Register.class);
+		criteria.setProjection(Projections.max("date"));
+		Date find = (Date) criteria.uniqueResult();
+
+		return find;
+	}
+
 }

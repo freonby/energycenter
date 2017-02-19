@@ -40,9 +40,10 @@ public class HomeController {
 		// Test.initCustomerBase(hibdao);
 		// Customer customer = hibdao.getCustomer("ДюнаЭнерго");
 		Customer customer = hibdao.getCustomer("Предприятие");
-		Date from = DateParser.convertDateFromString("01.02.2017");
-		Date to = DateParser.convertDateFromString("01.02.2017");
-		List<Register> allData = hibdao.getAllRegisterList(from, to);
+		// Date from = DateParser.convertDateFromString("01.02.2017");
+		// Date to = DateParser.convertDateFromString("01.02.2017");
+		Date last = hibdao.findLastDate();
+		List<Register> allData = hibdao.getAllRegisterList(last, last);
 		List<TimeZone> timeZone = hibdao.getZone();
 		List<IntervalStrings> stringsList = hibdao.getIntervals();
 		List<Fider> fList = customer.allFiders();
@@ -51,6 +52,7 @@ public class HomeController {
 			first = fList.get(0);
 		List<Register> list = Register.filterRegistersByEnergyTypeAndMeterNumber(allData, first.getEnergyMeter().getNumber(), 1);
 		session.setAttribute("emNumber", first.getEnergyMeter().getNumber());
+		session.setAttribute("firstName", first.getName());
 		session.setAttribute("energyType", 1);
 		session.setAttribute("customer", customer);
 		session.setAttribute("allData", allData);
@@ -60,6 +62,7 @@ public class HomeController {
 		session.setAttribute("intervalType", 30);
 		mav.setViewName("index");
 		mav.addObject("customer", customer);
+		mav.addObject("deviceDate", DateParser.convertDateTo(last));
 
 		return mav;
 	}
@@ -104,34 +107,14 @@ public class HomeController {
 		return "";
 	}
 
-	@RequestMapping(value = "/adduser", method = RequestMethod.GET)
-	@ResponseBody
-	public String addUser(@RequestParam String param, HttpSession session) {
-
-		// Customer c = AlfaCenterConverter.createCustomerById(100141);
-		// hibdao.addCustomer(c);
-
-		System.out.println("ПРОВЕРКА ============================================================");
-		// List<Register> list = AlfaCenterConverter.createCustomerById(100141);
-		// for (Register register : list) {
-		// hibdao.addRegister(register);
-		// }
-		// list = AlfaCenterConverter.createCustomerById(100142);
-		// for (Register register : list) {
-		// hibdao.addRegister(register);
-		// }
-
-		System.out.println("ПРОВЕРКА =========================КОНЕЦ");
-
-		return "";
-
-	}
-
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/info", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
 	@ResponseBody
 	public String info(@RequestParam String param, HttpSession session) {
 		Customer c = (Customer) session.getAttribute("customer");
+		if (param.equals("first")) {
+			param = (String) session.getAttribute("firstName");
+		}
 		Fider f = c.findFiderByName(param);
 		if (f == null) {
 			return "";

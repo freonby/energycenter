@@ -1,6 +1,7 @@
 package by.qlab.energycenter.utility;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -18,13 +19,16 @@ public class JSONParser {
 		}
 		ArrayList<ItemConsumption> list = new ArrayList<ItemConsumption>();
 		ItemConsumption item = null;
+		Date date = null;
 		for (Register reg : listRegisters) {
+			double consumption = reg.getConsumption();
 			int intervalNumber = reg.getIntervalNumber();
 			double readout = reg.getReadout();
+			date = reg.getDate();
 			Object[] strings = IntervalStrings.findByInterval(stringsList, intervalNumber);
 			String intervalName = (String) strings[0];
 			String color = TimeZone.findByCode(timeZone, (Integer) strings[1]);
-			item = new ItemConsumption(intervalName, (float) reg.getConsumption(), color, readout);
+			item = new ItemConsumption(intervalName, (float) consumption, color, readout, date);
 			list.add(item);
 		}
 		int correctSize = 48;
@@ -35,7 +39,7 @@ public class JSONParser {
 				Object[] strings = IntervalStrings.findByInterval(stringsList, i);
 				String intervalName = (String) strings[0];
 				String color = TimeZone.findByCode(timeZone, (Integer) strings[1]);
-				item = new ItemConsumption(intervalName, 0f, color, 0d);
+				item = new ItemConsumption(intervalName, 0f, color, 0d, date);
 				list.add(item);
 			}
 		}
@@ -49,18 +53,21 @@ public class JSONParser {
 		if (listRegisters.size() == 0) {
 			return "";
 		}
+
 		ArrayList<ItemConsumption> list = new ArrayList<ItemConsumption>();
 		ItemConsumption item = null;
+		Date date = null;
 		for (int i = 0; i < 48; i += 2) {
 			float consumption1 = (float) listRegisters.get(i).getConsumption();
 			float consumption2 = (float) listRegisters.get(i + 1).getConsumption();
 			float sum = consumption1 + consumption2;
 			int intervalNumber = listRegisters.get(i + 1).getIntervalNumber();
 			double readout = listRegisters.get(i + 1).getReadout();
+			date = listRegisters.get(i + 1).getDate();
 			Object[] strings = IntervalStrings.findByInterval(stringsList, intervalNumber);
 			String intervalName = (String) strings[0];
 			String color = TimeZone.findByCode(timeZone, (Integer) strings[1]);
-			item = new ItemConsumption(intervalName, sum, color, readout);
+			item = new ItemConsumption(intervalName, sum, color, readout, date);
 			list.add(item);
 
 		}

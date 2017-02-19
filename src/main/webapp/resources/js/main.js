@@ -57,7 +57,7 @@ function createChart() {
 
 			field : "interval",
 			labels : {
-				rotation : "auto",
+				rotation : "-45",
 				step : 1
 			},
 			majorGridLines : {
@@ -81,7 +81,7 @@ function createChart() {
 	});
 }
 $(document).ready(function() {
-
+	meterInfo("first");
 	createChart();
 
 });
@@ -173,16 +173,30 @@ function getTable() {
 				dataType : "json"
 			}
 		},
-		pageSize : 20
+		pageSize : 48
 	});
+	
 	$(document).ready(function() {
+		kendoConsole.log(src[4]);
 		$("#grid").kendoGrid({
 			dataSource : src,
 			height : 550,
 			filterable : true,
 			sortable : true,
 			pageable : true,
-			columns : [ {
+			columns : [
+				 {
+						field : "date",
+						title : "Дата",
+						filterable : false,
+						attributes : {
+							"class" : "table-cell",
+							style : "font-size: 12px"
+						}
+					},
+				
+				
+				{
 				field : "interval",
 				title : "Интервал",
 				filterable : false,
@@ -236,7 +250,8 @@ function onCriteriaChange() {
 		success : function(data) {
 			var json = JSON.parse(data);
 			createChart();
-			kendoConsole.log(json);
+			$("#deviceDate").html(json);
+
 
 		}
 	});

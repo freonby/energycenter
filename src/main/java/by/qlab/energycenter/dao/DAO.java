@@ -28,4 +28,6 @@ public interface DAO {
 
 	public List<TimeZone> getZone();
 
+	public Date findLastDate();
+
 }

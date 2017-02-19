@@ -1,17 +1,24 @@
 package by.qlab.energycenter.databuffer;
 
+import java.util.Date;
+
+import by.qlab.energycenter.utility.DateParser;
+
 public class ItemConsumption {
 	private String interval;
 	private float value;
 	private String color;
 	private float readout;
+	private String date;
 
-	public ItemConsumption(String interval, float value, String color, double readout) {
+	public ItemConsumption(String interval, float value, String color, double readout, Date date) {
 		super();
 		this.interval = interval;
 		this.value = value;
 		this.color = color;
 		this.readout = (float) readout;
+		this.date = DateParser.convertDateTo(date);
+
 	}
 
 	public ItemConsumption() {
@@ -20,6 +27,8 @@ public class ItemConsumption {
 		this.value = 0f;
 		this.readout = 0f;
 		this.color = "";
+		this.date = "";
+
 	}
 
 	public String getInterval() {
@@ -52,6 +61,14 @@ public class ItemConsumption {
 
 	public void setReadout(float readout) {
 		this.readout = readout;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 }

@@ -105,7 +105,7 @@
 									<div
 										class="device-details col-xs-12 col-sm-4 col-lg-3 col-md-3">
 										<p>
-											<strong>Дата: </strong> <i>${deviceTime}</i>
+											<strong>Дата: </strong> <i id="deviceDate">${deviceDate}</i>
 										</p>
 										<p>
 											<strong>Устройство: </strong><i id="deviceType"></i>
