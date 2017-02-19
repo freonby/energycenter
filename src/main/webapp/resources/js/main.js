@@ -1,18 +1,16 @@
 var night = "#2F2F4C";
 var maximum = "#C7504F";
 var day = "#C0B48B";
-var chartType ="column";
-
+var chartType = "column";
+var chartText = "Активная энергия, прием (A+)";
 function createChart() {
 
-	//getMax();
 	getTable();
 	$("#chart").kendoChart({
-		
-		
+
 		dataSource : {
 			transport : {
-				
+
 				read : {
 					url : "gson",
 					dataType : "json"
@@ -21,7 +19,7 @@ function createChart() {
 		},
 		title : {
 			align : "left",
-			text : "Активная энергия, A+"
+			text : chartText
 		},
 		legend : {
 			visible : false
@@ -40,7 +38,7 @@ function createChart() {
 			colorField : "color"
 		} ],
 		valueAxis : {
-			
+
 			majorGridLines : {
 				visible : true
 			},
@@ -82,11 +80,10 @@ function createChart() {
 		}
 	});
 }
-$(document).ready(function(){
+$(document).ready(function() {
 
-	createChart();	
-	
-	
+	createChart();
+
 });
 
 $(document).bind("kendo:skinChange", createChart);
@@ -198,35 +195,52 @@ function getTable() {
 			{
 				field : "value",
 				title : "Энергия",
-				filterable : true,
+				filterable : false,
 				attributes : {
 					"class" : "table-cell",
 					style : "font-size: 12px"
 				}
-			}, "Показания", "Потери"
+			}, {
+				field : "readout",
+				title : "Показания",
+				filterable : false,
+				attributes : {
+					"class" : "table-cell",
+					style : "font-size: 12px"
+				}
+			}
 
 			]
 		});
 	});
 
 }
+
 function initWidgets() {
 	$("#start-date").kendoDatePicker({
-		value : new Date(2017, 1, 1),
-		change : onCriteriaChange
+
+		change : onCriteriaChange,
+		culture : "ru-RU",
+
 	})
 
-	$("#end-date").kendoDatePicker({
-		value : new Date(2017, 1, 7),
-		change : onCriteriaChange
-	})
 }
 function onCriteriaChange() {
-	var startDate = $("#start-date").data("kendoDatePicker"), endDate = $(
-			"#end-date").data("kendoDatePicker"), filter = {
-		startDate : kendo.format("{0:MM/dd/yyyy hh:mm:ss}", startDate.value()),
-		endDate : kendo.format("{0:MM/dd/yyyy hh:mm:ss}", endDate.value())
-	}
+	var startDate = $("#start-date").data("kendoDatePicker");
+	$.ajax({
+		url : 'date',
+		data : ({
+			startDate : startDate.value()
+
+		}),
+		success : function(data) {
+			var json = JSON.parse(data);
+			createChart();
+			kendoConsole.log(json);
+
+		}
+	});
+
 }
 
 function meterInfo(label) {
@@ -240,7 +254,7 @@ function meterInfo(label) {
 		success : function(data) {
 			var json = JSON.parse(data);
 			$("#deviceType").html(json[2]);
-			$("#number").html(json[1]);		
+			$("#number").html(json[1]);
 			$("#fiderName").html(json[0]);
 			$("#iTransformer").html(json[3] + " [KI= " + json[4] + "]");
 			$("#uTransformer").html(json[5] + " [KU= " + json[6] + "]");
@@ -255,10 +269,10 @@ $(document).ready(function() {
 		select : function(e) {
 			var treeview = $("#treeview").data("kendoTreeView");
 			// find the node with text
-			//var label = treeview.element.find(e.node);
+			// var label = treeview.element.find(e.node);
 			var parent = treeview.parent(treeview.element.find(e.node));
 			meterInfo(treeview.text(parent));
-			kendoConsole.log(treeview.text(parent));
+			// kendoConsole.log(treeview.text(parent));
 		}
 	}
 
@@ -275,15 +289,15 @@ $(function() {
 			var index = this.current().index();
 			switch (index) {
 			case 0:
-				kendoConsole.log("Тип графика: линия");
+
 				lineType();
 				break;
 			case 1:
-				kendoConsole.log("Тип графика: гистограмма");
+
 				gystType();
 				break;
 			case 2:
-				kendoConsole.log("Тип графика: площадь");
+
 				areaType();
 				break;
 			}
@@ -297,23 +311,27 @@ $(function() {
 			switch (index) {
 			case 0:
 				sendParamEnergy(1);
+				chartText = "Активная энергия, прием (A+)";
 				createChart();
-				kendoConsole.log("Энергия: А+");
+
 				break;
 			case 1:
 				sendParamEnergy(2);
+				chartText = "Активная энергия, отдача (A-)";
 				createChart();
-				kendoConsole.log("Энергия: А-");
+
 				break;
 			case 2:
 				sendParamEnergy(3);
+				chartText = "Реактивная энергия, прием (R+)";
 				createChart();
-				kendoConsole.log("Энергия: R+");
+
 				break;
 			case 3:
 				sendParamEnergy(4);
+				chartText = "Реактивная энергия, отдача (R-)";
 				createChart();
-				kendoConsole.log("Энергия: R-");
+
 				break;
 			}
 		}
@@ -327,20 +345,20 @@ $(function() {
 			case 0:
 				sendParamEnergy(30);
 				createChart();
-				kendoConsole.log("Интервал: 30 мин");
+				// kendoConsole.log("Интервал: 30 мин");
 				break;
 			case 1:
 				sendParamEnergy(60);
 				createChart();
-				kendoConsole.log("Интервал: 60 мин");			
+
 				break;
-			
+
 			}
 		}
 	});
 });
 
-function sendParamEnergy(typeEnergy){
+function sendParamEnergy(typeEnergy) {
 	$.ajax({
 		url : 'dispatch',
 		data : ({
@@ -348,23 +366,8 @@ function sendParamEnergy(typeEnergy){
 
 		}),
 		success : function(data) {
-			kendoConsole.log("parameter dispatched in session");
-		}
-	});	
-	
-}
-function getMax(){
-
-	$.ajax({
-		url : 'max',
-		
-		success : function(data) {
-			var maxVal=JSON.parse(data);			
-			var m=new Number(maxVal);
-			kendoConsole.log("max interval="+m);
-			return m;
 
 		}
-	});	
-	
+	});
+
 }

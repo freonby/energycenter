@@ -23,6 +23,7 @@
 <link href="resources/css/site.css" rel="stylesheet">
 <script src="resources/js/jquery.min.js"></script>
 <script src="resources/js/kendo.all.min.js"></script>
+<script src="resources/js/cultures/kendo.culture.ru-RU.min.js"></script>
 <script src="resources/js/main.js"></script>
 <script src="resources/js/console.js"></script>
 <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
@@ -47,14 +48,11 @@
 					<div id="dateFilter" class="col-xs-9">
 						<div class="period-wrapper">
 							<button id="undo" class="k-button k-primary">Опрос</button>
-							<label for="StartDate" class="select-period">Stats from</label> <input
-								id="start-date" /> <span class="k-invalid-msg"
+							<label for="StartDate" class="select-period">Выберите
+								дату</label> <input id="start-date" /> <span class="k-invalid-msg"
 								data-for="StartDate"></span>
 						</div>
-						<div class="period-wrapper">
-							<label for="EndDate" class="select-period">To</label> <input
-								id="end-date" /> <span class="k-invalid-msg" data-for="EndDate"></span>
-						</div>
+
 					</div>
 					<div style="clear: both;"></div>
 				</div>
@@ -97,6 +95,8 @@
 								</ul></li>
 						</ul>
 						<!--END TREE container-->
+						
+
 					</div>
 					<div id="employee-details-wrapper" class="col col-xs-10">
 						<div id="employee-details" class="row">
@@ -147,7 +147,8 @@
 											<li>площадь</li>
 										</ul>
 									</div>
-									<div class="col-xs-12 col-sm-12  box-graph box-border">
+									
+									<div class="col-xs-12 col-sm-12">
 										<div class="chart-wrapper">
 											<div id="chart"></div>
 										</div>
@@ -179,8 +180,8 @@
 	<!--dialog window container-->
 	<div id="dialog"></div>
 	<!--end dialog window container-->
-	
-	
+
+
 	<!-- Bootstrap core JavaScript
 		================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->

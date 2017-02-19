@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+
 import by.qlab.energycenter.dao.DAO;
 import by.qlab.energycenter.databuffer.IntervalStrings;
 import by.qlab.energycenter.databuffer.Register;
@@ -36,20 +38,19 @@ public class HomeController {
 
 		ModelAndView mav = new ModelAndView();
 		// Test.initCustomerBase(hibdao);
-		Customer customer = hibdao.getCustomer(" ТП 10/0.4 (технический учет)");
+		// Customer customer = hibdao.getCustomer("ДюнаЭнерго");
+		Customer customer = hibdao.getCustomer("Предприятие");
 		Date from = DateParser.convertDateFromString("01.02.2017");
 		Date to = DateParser.convertDateFromString("01.02.2017");
 		List<Register> allData = hibdao.getAllRegisterList(from, to);
 		List<TimeZone> timeZone = hibdao.getZone();
 		List<IntervalStrings> stringsList = hibdao.getIntervals();
-
-		// Customer customer = hibdao.getCustomer("ЧСУП ЖМС (коммерческий
-		// учет)");
 		List<Fider> fList = customer.allFiders();
 		Fider first = null;
 		if (fList != null)
-			first = fList.get(1);
+			first = fList.get(0);
 		List<Register> list = Register.filterRegistersByEnergyTypeAndMeterNumber(allData, first.getEnergyMeter().getNumber(), 1);
+		session.setAttribute("emNumber", first.getEnergyMeter().getNumber());
 		session.setAttribute("energyType", 1);
 		session.setAttribute("customer", customer);
 		session.setAttribute("allData", allData);
@@ -144,6 +145,23 @@ public class HomeController {
 		return f.toJson();
 	}
 
+	@SuppressWarnings({ "deprecation" })
+	@RequestMapping(value = "/date", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
+	@ResponseBody
+	public String date(@RequestParam String startDate, HttpSession session) {
+
+		Date d = new Date(startDate);
+		int energyType = (Integer) session.getAttribute("energyType");
+		String emNumber = (String) session.getAttribute("emNumber");
+		List<Register> allData = hibdao.getAllRegisterList(d, d);
+		session.setAttribute("allData", allData);
+		List<Register> graphdata = Register.filterRegistersByEnergyTypeAndMeterNumber(allData, emNumber, energyType);
+		session.setAttribute("graphdata", graphdata);
+		Gson gson = new Gson();
+		String json = gson.toJson(DateParser.convertDateTo(d));
+		return json;
+	}
+
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/dispatch", method = RequestMethod.GET)
 	@ResponseBody
@@ -178,15 +196,6 @@ public class HomeController {
 		}
 
 		return "";
-	}
-
-	@RequestMapping(value = "/max", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
-	@ResponseBody
-	public String max(HttpSession session) {
-
-		double maxConsumption = (Double) session.getAttribute("maxConsumption");
-
-		return Double.toString(maxConsumption);
 	}
 
 }

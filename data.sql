@@ -71,7 +71,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (1,' ТП 10/0.4 (технический учет)',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,'ЧСУП ЖМС (коммерческий учет)',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `customer` VALUES (1,'ДюнаЭнерго',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,'Предприятие',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -314,7 +314,7 @@ CREATE TABLE `transformerstation` (
 
 LOCK TABLES `transformerstation` WRITE;
 /*!40000 ALTER TABLE `transformerstation` DISABLE KEYS */;
-INSERT INTO `transformerstation` VALUES (1,'Подстанция  ТП 10/0.4 (технический учет)',1,0),(2,'Подстанция ЧСУП ЖМС (коммерческий учет)',2,0);
+INSERT INTO `transformerstation` VALUES (1,'ТП 10/0.4 кВ',1,0),(2,'ПС 110/10 кВ',2,0);
 /*!40000 ALTER TABLE `transformerstation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -375,4 +375,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-13 10:39:37
+-- Dump completed on 2017-02-19  9:56:28

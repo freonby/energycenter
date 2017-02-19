@@ -20,4 +20,12 @@ public class DateParser {
 
 	}
 
+	public static String convertDateTo(Date d) {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+		String newdate = sdf.format(d);
+
+		return newdate;
+
+	}
+
 }
