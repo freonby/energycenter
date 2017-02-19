@@ -35,7 +35,7 @@ public class JSONParser {
 
 		if (list.size() < correctSize) {
 
-			for (int i = list.size() + 1; i <= correctSize - 1; i++) {
+			for (int i = list.size() + 1; i <= correctSize; i++) {
 				Object[] strings = IntervalStrings.findByInterval(stringsList, i);
 				String intervalName = (String) strings[0];
 				String color = TimeZone.findByCode(timeZone, (Integer) strings[1]);
@@ -57,7 +57,14 @@ public class JSONParser {
 		ArrayList<ItemConsumption> list = new ArrayList<ItemConsumption>();
 		ItemConsumption item = null;
 		Date date = null;
-		for (int i = 0; i < 48; i += 2) {
+		int size = listRegisters.size();
+		if (size == 0 || size == 1) {
+			return "";
+		}
+		if (size % 2 != 0) {
+			size = size - 1;
+		}
+		for (int i = 0; i < size; i += 2) {
 			float consumption1 = (float) listRegisters.get(i).getConsumption();
 			float consumption2 = (float) listRegisters.get(i + 1).getConsumption();
 			float sum = consumption1 + consumption2;
@@ -71,7 +78,18 @@ public class JSONParser {
 			list.add(item);
 
 		}
+		int correctSize = 48;
 
+		if (list.size() < correctSize) {
+
+			for (int i = size + 2; i <= correctSize; i += 2) {
+				Object[] strings = IntervalStrings.findByInterval(stringsList, i);
+				String intervalName = (String) strings[0];
+				String color = TimeZone.findByCode(timeZone, (Integer) strings[1]);
+				item = new ItemConsumption(intervalName, 0f, color, 0d, date);
+				list.add(item);
+			}
+		}
 		Gson gson = new Gson();
 		String json = gson.toJson(list);
 		return json;

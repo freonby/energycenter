@@ -177,7 +177,7 @@ function getTable() {
 	});
 	
 	$(document).ready(function() {
-		kendoConsole.log(src[4]);
+
 		$("#grid").kendoGrid({
 			dataSource : src,
 			height : 550,
